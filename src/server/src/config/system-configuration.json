@@ -1,0 +1,18 @@
+{
+  "MAX_BORROW_LIMIT": 6,
+  "FEE_ADMIN": 1,
+  "FEE_ADDON": 0.5,
+  "DAMAGE_COEFFICIENTS": {
+    "perfect_condition": 0,
+    "slight_cover_scratches": 0.05,
+    "folded_pages": 0.5,
+    "pencil_marks": 0.15,
+    "ink_marks": 0.4,
+    "torn_pages": 0.5,
+    "water_damage": 0.7,
+    "damaged_binding": 0.3,
+    "missing_mats": 0.3,
+    "missing_pages": 1,
+    "lost": 2
+  }
+}

@@ -1,0 +1,733 @@
+export default function DashboarduseryourStudyGrouprecommendedBooks() {
+  return (
+    <div className="bg-[#F8EFE6] min-w-screen min-h-screen overflow-hidden">
+      <div className="w-full h-[149px] absolute left-0 -top-[66px]">
+        <div className="bg-[#000] w-full h-[88px] absolute left-0 top-[61px]"></div>
+        <div className="flex items-center gap-2 w-[132px] absolute left-5 top-[95px]">
+          <svg
+            width="27"
+            height="27"
+            viewBox="0 0 27 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="flex flex-col items-start w-fit "
+          >
+            <path
+              d="M4 21.3333V12H6.66667V21.3333H4ZM12 21.3333V12H14.6667V21.3333H12ZM0 26.6667V24H26.6667V26.6667H0ZM20 21.3333V12H22.6667V21.3333H20ZM0 9.33333V6.66667L13.3333 0L26.6667 6.66667V9.33333H0Z"
+              fill="white"
+            />
+          </svg>
+          <div className="flex flex-col items-start w-fit">
+            <p className="text-[#FFF] font-inter text-2xl font-bold leading-8 w-fit tracking-[-0.025em]">
+              LIMA
+            </p>
+          </div>
+        </div>
+        <div className="flex p-4 items-center gap-4 rounded-lg w-[140px] h-[52px] absolute left-[263px] top-[83px]">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="flex flex-col items-start w-fit "
+          >
+            <path
+              d="M10 6V0H18V6H10ZM0 10V0H8V10H0ZM10 18V8H18V18H10ZM0 18V12H8V18H0ZM2 8H6V2H2V8ZM12 16H16V10H12V16ZM12 4H16V2H12V4ZM2 16H6V14H2V16Z"
+              fill="white"
+            />
+          </svg>
+          <div className="flex flex-col items-start w-fit">
+            <p className="text-[#FFF] font-inter text-sm font-semibold leading-5 w-fit tracking-[0.01em]">
+              Dashboard
+            </p>
+          </div>
+        </div>
+        <div className="flex p-4 items-center gap-4 rounded-lg w-[108px] absolute left-[138px] top-[83px]">
+          <svg
+            width="16"
+            height="18"
+            viewBox="0 0 16 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="flex flex-col items-start w-fit "
+          >
+            <path d="M0 18V6L8 0L16 6V18H10V11H6V18H0Z" fill="white" />
+          </svg>
+          <div className="flex flex-col items-start w-fit">
+            <p className="text-[#FFF] font-inter text-sm font-semibold leading-5 w-fit tracking-[0.01em]">
+              Home
+            </p>
+          </div>
+        </div>
+        <div className="flex p-4 items-center gap-4 rounded-lg w-[180px] h-[52px] absolute left-[420px] top-[83px]">
+          <svg
+            width="22"
+            height="16"
+            viewBox="0 0 22 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="flex flex-col items-start w-fit "
+          >
+            <path
+              d="M13 5.9V4.2C13.55 3.96667 14.1125 3.79167 14.6875 3.675C15.2625 3.55833 15.8667 3.5 16.5 3.5C16.9333 3.5 17.3583 3.53333 17.775 3.6C18.1917 3.66667 18.6 3.75 19 3.85V5.45C18.6 5.3 18.1958 5.1875 17.7875 5.1125C17.3792 5.0375 16.95 5 16.5 5C15.8667 5 15.2583 5.07917 14.675 5.2375C14.0917 5.39583 13.5333 5.61667 13 5.9ZM13 11.4V9.7C13.55 9.46667 14.1125 9.29167 14.6875 9.175C15.2625 9.05833 15.8667 9 16.5 9C16.9333 9 17.3583 9.03333 17.775 9.1C18.1917 9.16667 18.6 9.25 19 9.35V10.95C18.6 10.8 18.1958 10.6875 17.7875 10.6125C17.3792 10.5375 16.95 10.5 16.5 10.5C15.8667 10.5 15.2583 10.575 14.675 10.725C14.0917 10.875 13.5333 11.1 13 11.4ZM13 8.65V6.95C13.55 6.71667 14.1125 6.54167 14.6875 6.425C15.2625 6.30833 15.8667 6.25 16.5 6.25C16.9333 6.25 17.3583 6.28333 17.775 6.35C18.1917 6.41667 18.6 6.5 19 6.6V8.2C18.6 8.05 18.1958 7.9375 17.7875 7.8625C17.3792 7.7875 16.95 7.75 16.5 7.75C15.8667 7.75 15.2583 7.82917 14.675 7.9875C14.0917 8.14583 13.5333 8.36667 13 8.65ZM5.5 12C6.28333 12 7.04583 12.0875 7.7875 12.2625C8.52917 12.4375 9.26667 12.7 10 13.05V3.2C9.31667 2.8 8.59167 2.5 7.825 2.3C7.05833 2.1 6.28333 2 5.5 2C4.9 2 4.30417 2.05833 3.7125 2.175C3.12083 2.29167 2.55 2.46667 2 2.7V12.6C2.58333 12.4 3.1625 12.25 3.7375 12.15C4.3125 12.05 4.9 12 5.5 12ZM12 13.05C12.7333 12.7 13.4708 12.4375 14.2125 12.2625C14.9542 12.0875 15.7167 12 16.5 12C17.1 12 17.6875 12.05 18.2625 12.15C18.8375 12.25 19.4167 12.4 20 12.6V2.7C19.45 2.46667 18.8792 2.29167 18.2875 2.175C17.6958 2.05833 17.1 2 16.5 2C15.7167 2 14.9417 2.1 14.175 2.3C13.4083 2.5 12.6833 2.8 12 3.2V13.05ZM11 16C10.2 15.3667 9.33333 14.875 8.4 14.525C7.46667 14.175 6.5 14 5.5 14C4.8 14 4.1125 14.0917 3.4375 14.275C2.7625 14.4583 2.11667 14.7167 1.5 15.05C1.15 15.2333 0.8125 15.225 0.4875 15.025C0.1625 14.825 0 14.5333 0 14.15V2.1C0 1.91667 0.0458333 1.74167 0.1375 1.575C0.229167 1.40833 0.366667 1.28333 0.55 1.2C1.31667 0.8 2.11667 0.5 2.95 0.3C3.78333 0.1 4.63333 0 5.5 0C6.46667 0 7.4125 0.125 8.3375 0.375C9.2625 0.625 10.15 1 11 1.5C11.85 1 12.7375 0.625 13.6625 0.375C14.5875 0.125 15.5333 0 16.5 0C17.3667 0 18.2167 0.1 19.05 0.3C19.8833 0.5 20.6833 0.8 21.45 1.2C21.6333 1.28333 21.7708 1.40833 21.8625 1.575C21.9542 1.74167 22 1.91667 22 2.1V14.15C22 14.5333 21.8375 14.825 21.5125 15.025C21.1875 15.225 20.85 15.2333 20.5 15.05C19.8833 14.7167 19.2375 14.4583 18.5625 14.275C17.8875 14.0917 17.2 14 16.5 14C15.5 14 14.5333 14.175 13.6 14.525C12.6667 14.875 11.8 15.3667 11 16Z"
+              fill="white"
+            />
+          </svg>
+          <div className="flex flex-col items-start w-fit">
+            <p className="text-[#FFF] font-inter text-sm font-semibold leading-5 w-fit tracking-[0.01em]">
+              Study Together
+            </p>
+          </div>
+        </div>
+        <div className="flex p-4 items-center gap-4 rounded-lg w-[147px] absolute left-[617px] top-[83px]">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="flex flex-col items-start w-fit "
+          >
+            <path
+              d="M12 18L6 15.9L1.35 17.7C1.01667 17.8333 0.708333 17.7958 0.425 17.5875C0.141667 17.3792 0 17.1 0 16.75V2.75C0 2.53333 0.0625 2.34167 0.1875 2.175C0.3125 2.00833 0.483333 1.88333 0.7 1.8L6 0L12 2.1L16.65 0.3C16.9833 0.166667 17.2917 0.204167 17.575 0.4125C17.8583 0.620833 18 0.9 18 1.25V15.25C18 15.4667 17.9375 15.6583 17.8125 15.825C17.6875 15.9917 17.5167 16.1167 17.3 16.2L12 18ZM11 15.55V3.85L7 2.45V14.15L11 15.55ZM13 15.55L16 14.55V2.7L13 3.85V15.55ZM2 15.3L5 14.15V2.45L2 3.45V15.3ZM13 3.85V15.55V3.85ZM5 2.45V14.15V2.45Z"
+              fill="white"
+            />
+          </svg>
+          <div className="flex flex-col items-start w-fit">
+            <p className="text-[#FFF] font-inter text-sm font-semibold leading-5 w-fit tracking-[0.01em]">
+              Library Map
+            </p>
+          </div>
+        </div>
+        <svg
+          width="16"
+          height="20"
+          viewBox="0 0 16 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-4 h-5 absolute left-[1251px] top-[103px] "
+        >
+          <path
+            d="M0 17V15H2V8C2 6.61667 2.41667 5.3875 3.25 4.3125C4.08333 3.2375 5.16667 2.53333 6.5 2.2V1.5C6.5 1.08333 6.64583 0.729167 6.9375 0.4375C7.22917 0.145833 7.58333 0 8 0C8.41667 0 8.77083 0.145833 9.0625 0.4375C9.35417 0.729167 9.5 1.08333 9.5 1.5V2.2C10.8333 2.53333 11.9167 3.2375 12.75 4.3125C13.5833 5.3875 14 6.61667 14 8V15H16V17H0ZM8 20C7.45 20 6.97917 19.8042 6.5875 19.4125C6.19583 19.0208 6 18.55 6 18H10C10 18.55 9.80417 19.0208 9.4125 19.4125C9.02083 19.8042 8.55 20 8 20ZM4 15H12V8C12 6.9 11.6083 5.95833 10.825 5.175C10.0417 4.39167 9.1 4 8 4C6.9 4 5.95833 4.39167 5.175 5.175C4.39167 5.95833 4 6.9 4 8V15Z"
+            fill="white"
+          />
+        </svg>
+        <button className="cursor-pointer text-nowrap flex pt-2.5 pr-0 pb-[11px] pl-0 justify-center items-center rounded-full bg-[#486C7E] w-[39px] h-10 absolute left-[1355px] top-[89px]">
+          <p className="text-[#FFF] font-inter text-sm font-bold leading-5 w-fit">
+            AM
+          </p>
+        </button>
+        <svg
+          width="21"
+          height="20"
+          viewBox="0 0 21 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="inline-flex flex-col items-start absolute left-[1304px] top-[103px] "
+        >
+          <path
+            d="M7.3 20L6.9 16.8C6.68333 16.7167 6.47917 16.6167 6.2875 16.5C6.09583 16.3833 5.90833 16.2583 5.725 16.125L2.75 17.375L0 12.625L2.575 10.675C2.55833 10.5583 2.55 10.4458 2.55 10.3375C2.55 10.2292 2.55 10.1167 2.55 10C2.55 9.88333 2.55 9.77083 2.55 9.6625C2.55 9.55417 2.55833 9.44167 2.575 9.325L0 7.375L2.75 2.625L5.725 3.875C5.90833 3.74167 6.1 3.61667 6.3 3.5C6.5 3.38333 6.7 3.28333 6.9 3.2L7.3 0H12.8L13.2 3.2C13.4167 3.28333 13.6208 3.38333 13.8125 3.5C14.0042 3.61667 14.1917 3.74167 14.375 3.875L17.35 2.625L20.1 7.375L17.525 9.325C17.5417 9.44167 17.55 9.55417 17.55 9.6625C17.55 9.77083 17.55 9.88333 17.55 10C17.55 10.1167 17.55 10.2292 17.55 10.3375C17.55 10.4458 17.5333 10.5583 17.5 10.675L20.075 12.625L17.325 17.375L14.375 16.125C14.1917 16.2583 14 16.3833 13.8 16.5C13.6 16.6167 13.4 16.7167 13.2 16.8L12.8 20H7.3ZM9.05 18H11.025L11.375 15.35C11.8917 15.2167 12.3708 15.0208 12.8125 14.7625C13.2542 14.5042 13.6583 14.1917 14.025 13.825L16.5 14.85L17.475 13.15L15.325 11.525C15.4083 11.2917 15.4667 11.0458 15.5 10.7875C15.5333 10.5292 15.55 10.2667 15.55 10C15.55 9.73333 15.5333 9.47083 15.5 9.2125C15.4667 8.95417 15.4083 8.70833 15.325 8.475L17.475 6.85L16.5 5.15L14.025 6.2C13.6583 5.81667 13.2542 5.49583 12.8125 5.2375C12.3708 4.97917 11.8917 4.78333 11.375 4.65L11.05 2H9.075L8.725 4.65C8.20833 4.78333 7.72917 4.97917 7.2875 5.2375C6.84583 5.49583 6.44167 5.80833 6.075 6.175L3.6 5.15L2.625 6.85L4.775 8.45C4.69167 8.7 4.63333 8.95 4.6 9.2C4.56667 9.45 4.55 9.71667 4.55 10C4.55 10.2667 4.56667 10.525 4.6 10.775C4.63333 11.025 4.69167 11.275 4.775 11.525L2.625 13.15L3.6 14.85L6.075 13.8C6.44167 14.1833 6.84583 14.5042 7.2875 14.7625C7.72917 15.0208 8.20833 15.2167 8.725 15.35L9.05 18ZM10.1 13.5C11.0667 13.5 11.8917 13.1583 12.575 12.475C13.2583 11.7917 13.6 10.9667 13.6 10C13.6 9.03333 13.2583 8.20833 12.575 7.525C11.8917 6.84167 11.0667 6.5 10.1 6.5C9.11667 6.5 8.2875 6.84167 7.6125 7.525C6.9375 8.20833 6.6 9.03333 6.6 10C6.6 10.9667 6.9375 11.7917 7.6125 12.475C8.2875 13.1583 9.11667 13.5 10.1 13.5Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+      <div className="flex pt-[102px] pr-0 pb-10 pl-0 flex-col justify-between items-start border-r border-r-[#C2C9C4] bg-[#FFF] shadow-[01px2px0rgba(0,0,0,0.05)] w-[260px] h-[2463px] absolute -left-3.5 top-[83px]">
+        <div className="flex pb-12 flex-col items-start w-full">
+          <div className="flex py-0 px-8 flex-col items-start gap-1 w-full">
+            <div className="flex flex-col items-start w-full">
+              <p className="text-[#1A2E44] font-hankenGrotesk text-2xl font-bold leading-8 w-full text-center tracking-[0.1667em]">
+                USER
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-start w-full h-full overflow-hidden">
+          <div className="flex py-3.5 px-8 items-center gap-3 w-full">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex flex-col items-start w-fit "
+            >
+              <path
+                d="M3.85 15.1C4.7 14.45 5.65 13.9375 6.7 13.5625C7.75 13.1875 8.85 13 10 13C11.15 13 12.25 13.1875 13.3 13.5625C14.35 13.9375 15.3 14.45 16.15 15.1C16.7333 14.4167 17.1875 13.6417 17.5125 12.775C17.8375 11.9083 18 10.9833 18 10C18 7.78333 17.2208 5.89583 15.6625 4.3375C14.1042 2.77917 12.2167 2 10 2C7.78333 2 5.89583 2.77917 4.3375 4.3375C2.77917 5.89583 2 7.78333 2 10C2 10.9833 2.1625 11.9083 2.4875 12.775C2.8125 13.6417 3.26667 14.4167 3.85 15.1ZM10 11C9.01667 11 8.1875 10.6625 7.5125 9.9875C6.8375 9.3125 6.5 8.48333 6.5 7.5C6.5 6.51667 6.8375 5.6875 7.5125 5.0125C8.1875 4.3375 9.01667 4 10 4C10.9833 4 11.8125 4.3375 12.4875 5.0125C13.1625 5.6875 13.5 6.51667 13.5 7.5C13.5 8.48333 13.1625 9.3125 12.4875 9.9875C11.8125 10.6625 10.9833 11 10 11ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20ZM10 18C10.8833 18 11.7167 17.8708 12.5 17.6125C13.2833 17.3542 14 16.9833 14.65 16.5C14 16.0167 13.2833 15.6458 12.5 15.3875C11.7167 15.1292 10.8833 15 10 15C9.11667 15 8.28333 15.1292 7.5 15.3875C6.71667 15.6458 6 16.0167 5.35 16.5C6 16.9833 6.71667 17.3542 7.5 17.6125C8.28333 17.8708 9.11667 18 10 18ZM10 9C10.4333 9 10.7917 8.85833 11.075 8.575C11.3583 8.29167 11.5 7.93333 11.5 7.5C11.5 7.06667 11.3583 6.70833 11.075 6.425C10.7917 6.14167 10.4333 6 10 6C9.56667 6 9.20833 6.14167 8.925 6.425C8.64167 6.70833 8.5 7.06667 8.5 7.5C8.5 7.93333 8.64167 8.29167 8.925 8.575C9.20833 8.85833 9.56667 9 10 9Z"
+                fill="#424945"
+              />
+            </svg>
+            <div className="flex flex-col items-start w-fit">
+              <p className="text-[#424945] font-hankenGrotesk text-sm font-semibold leading-[22px] w-fit">
+                Profile
+              </p>
+            </div>
+          </div>
+          <div className="flex py-3.5 px-8 items-center gap-3 w-full">
+            <div className="flex flex-col items-start w-fit">
+              <svg
+                width="22"
+                height="16"
+                viewBox="0 0 22 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="flex flex-col items-start w-fit "
+              >
+                <path
+                  d="M13 5.9V4.2C13.55 3.96667 14.1125 3.79167 14.6875 3.675C15.2625 3.55833 15.8667 3.5 16.5 3.5C16.9333 3.5 17.3583 3.53333 17.775 3.6C18.1917 3.66667 18.6 3.75 19 3.85V5.45C18.6 5.3 18.1958 5.1875 17.7875 5.1125C17.3792 5.0375 16.95 5 16.5 5C15.8667 5 15.2583 5.07917 14.675 5.2375C14.0917 5.39583 13.5333 5.61667 13 5.9ZM13 11.4V9.7C13.55 9.46667 14.1125 9.29167 14.6875 9.175C15.2625 9.05833 15.8667 9 16.5 9C16.9333 9 17.3583 9.03333 17.775 9.1C18.1917 9.16667 18.6 9.25 19 9.35V10.95C18.6 10.8 18.1958 10.6875 17.7875 10.6125C17.3792 10.5375 16.95 10.5 16.5 10.5C15.8667 10.5 15.2583 10.575 14.675 10.725C14.0917 10.875 13.5333 11.1 13 11.4ZM13 8.65V6.95C13.55 6.71667 14.1125 6.54167 14.6875 6.425C15.2625 6.30833 15.8667 6.25 16.5 6.25C16.9333 6.25 17.3583 6.28333 17.775 6.35C18.1917 6.41667 18.6 6.5 19 6.6V8.2C18.6 8.05 18.1958 7.9375 17.7875 7.8625C17.3792 7.7875 16.95 7.75 16.5 7.75C15.8667 7.75 15.2583 7.82917 14.675 7.9875C14.0917 8.14583 13.5333 8.36667 13 8.65ZM5.5 12C6.28333 12 7.04583 12.0875 7.7875 12.2625C8.52917 12.4375 9.26667 12.7 10 13.05V3.2C9.31667 2.8 8.59167 2.5 7.825 2.3C7.05833 2.1 6.28333 2 5.5 2C4.9 2 4.30417 2.05833 3.7125 2.175C3.12083 2.29167 2.55 2.46667 2 2.7V12.6C2.58333 12.4 3.1625 12.25 3.7375 12.15C4.3125 12.05 4.9 12 5.5 12ZM12 13.05C12.7333 12.7 13.4708 12.4375 14.2125 12.2625C14.9542 12.0875 15.7167 12 16.5 12C17.1 12 17.6875 12.05 18.2625 12.15C18.8375 12.25 19.4167 12.4 20 12.6V2.7C19.45 2.46667 18.8792 2.29167 18.2875 2.175C17.6958 2.05833 17.1 2 16.5 2C15.7167 2 14.9417 2.1 14.175 2.3C13.4083 2.5 12.6833 2.8 12 3.2V13.05ZM11 16C10.2 15.3667 9.33333 14.875 8.4 14.525C7.46667 14.175 6.5 14 5.5 14C4.8 14 4.1125 14.0917 3.4375 14.275C2.7625 14.4583 2.11667 14.7167 1.5 15.05C1.15 15.2333 0.8125 15.225 0.4875 15.025C0.1625 14.825 0 14.5333 0 14.15V2.1C0 1.91667 0.0458333 1.74167 0.1375 1.575C0.229167 1.40833 0.366667 1.28333 0.55 1.2C1.31667 0.8 2.11667 0.5 2.95 0.3C3.78333 0.1 4.63333 0 5.5 0C6.46667 0 7.4125 0.125 8.3375 0.375C9.2625 0.625 10.15 1 11 1.5C11.85 1 12.7375 0.625 13.6625 0.375C14.5875 0.125 15.5333 0 16.5 0C17.3667 0 18.2167 0.1 19.05 0.3C19.8833 0.5 20.6833 0.8 21.45 1.2C21.6333 1.28333 21.7708 1.40833 21.8625 1.575C21.9542 1.74167 22 1.91667 22 2.1V14.15C22 14.5333 21.8375 14.825 21.5125 15.025C21.1875 15.225 20.85 15.2333 20.5 15.05C19.8833 14.7167 19.2375 14.4583 18.5625 14.275C17.8875 14.0917 17.2 14 16.5 14C15.5 14 14.5333 14.175 13.6 14.525C12.6667 14.875 11.8 15.3667 11 16Z"
+                  fill="#4A5568"
+                />
+              </svg>
+            </div>
+            <div className="flex flex-col items-start w-fit">
+              <p className="text-[#424945] font-hankenGrotesk text-sm font-semibold leading-[22px] w-fit">
+                Borrowed Books
+              </p>
+            </div>
+          </div>
+          <div className="flex py-3.5 px-8 items-center gap-3 w-full">
+            <svg
+              width="24"
+              height="12"
+              viewBox="0 0 24 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex flex-col items-start w-fit "
+            >
+              <path
+                d="M0 12V10.425C0 9.70833 0.366667 9.125 1.1 8.675C1.83333 8.225 2.8 8 4 8C4.21667 8 4.425 8.00417 4.625 8.0125C4.825 8.02083 5.01667 8.04167 5.2 8.075C4.96667 8.425 4.79167 8.79167 4.675 9.175C4.55833 9.55833 4.5 9.95833 4.5 10.375V12H0ZM6 12V10.375C6 9.84167 6.14583 9.35417 6.4375 8.9125C6.72917 8.47083 7.14167 8.08333 7.675 7.75C8.20833 7.41667 8.84583 7.16667 9.5875 7C10.3292 6.83333 11.1333 6.75 12 6.75C12.8833 6.75 13.6958 6.83333 14.4375 7C15.1792 7.16667 15.8167 7.41667 16.35 7.75C16.8833 8.08333 17.2917 8.47083 17.575 8.9125C17.8583 9.35417 18 9.84167 18 10.375V12H6ZM19.5 12V10.375C19.5 9.94167 19.4458 9.53333 19.3375 9.15C19.2292 8.76667 19.0667 8.40833 18.85 8.075C19.0333 8.04167 19.2208 8.02083 19.4125 8.0125C19.6042 8.00417 19.8 8 20 8C21.2 8 22.1667 8.22083 22.9 8.6625C23.6333 9.10417 24 9.69167 24 10.425V12H19.5ZM8.125 10H15.9C15.7333 9.66667 15.2708 9.375 14.5125 9.125C13.7542 8.875 12.9167 8.75 12 8.75C11.0833 8.75 10.2458 8.875 9.4875 9.125C8.72917 9.375 8.275 9.66667 8.125 10ZM4 7C3.45 7 2.97917 6.80417 2.5875 6.4125C2.19583 6.02083 2 5.55 2 5C2 4.43333 2.19583 3.95833 2.5875 3.575C2.97917 3.19167 3.45 3 4 3C4.56667 3 5.04167 3.19167 5.425 3.575C5.80833 3.95833 6 4.43333 6 5C6 5.55 5.80833 6.02083 5.425 6.4125C5.04167 6.80417 4.56667 7 4 7ZM20 7C19.45 7 18.9792 6.80417 18.5875 6.4125C18.1958 6.02083 18 5.55 18 5C18 4.43333 18.1958 3.95833 18.5875 3.575C18.9792 3.19167 19.45 3 20 3C20.5667 3 21.0417 3.19167 21.425 3.575C21.8083 3.95833 22 4.43333 22 5C22 5.55 21.8083 6.02083 21.425 6.4125C21.0417 6.80417 20.5667 7 20 7ZM12 6C11.1667 6 10.4583 5.70833 9.875 5.125C9.29167 4.54167 9 3.83333 9 3C9 2.15 9.29167 1.4375 9.875 0.8625C10.4583 0.2875 11.1667 0 12 0C12.85 0 13.5625 0.2875 14.1375 0.8625C14.7125 1.4375 15 2.15 15 3C15 3.83333 14.7125 4.54167 14.1375 5.125C13.5625 5.70833 12.85 6 12 6ZM12 4C12.2833 4 12.5208 3.90417 12.7125 3.7125C12.9042 3.52083 13 3.28333 13 3C13 2.71667 12.9042 2.47917 12.7125 2.2875C12.5208 2.09583 12.2833 2 12 2C11.7167 2 11.4792 2.09583 11.2875 2.2875C11.0958 2.47917 11 2.71667 11 3C11 3.28333 11.0958 3.52083 11.2875 3.7125C11.4792 3.90417 11.7167 4 12 4Z"
+                fill="#424945"
+              />
+            </svg>
+            <div className="flex flex-col items-start w-fit">
+              <p className="text-[#424945] font-hankenGrotesk text-sm font-semibold leading-[22px] w-fit">
+                Your Study Groups
+              </p>
+            </div>
+          </div>
+          <div className="flex py-3.5 px-8 items-center gap-3 w-full">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex flex-col items-start w-fit "
+            >
+              <path
+                d="M0 18V16H2V0H12V1H16V16H18V18H14V3H12V18H0ZM4 2V16V2ZM8 10C8.28333 10 8.52083 9.90417 8.7125 9.7125C8.90417 9.52083 9 9.28333 9 9C9 8.71667 8.90417 8.47917 8.7125 8.2875C8.52083 8.09583 8.28333 8 8 8C7.71667 8 7.47917 8.09583 7.2875 8.2875C7.09583 8.47917 7 8.71667 7 9C7 9.28333 7.09583 9.52083 7.2875 9.7125C7.47917 9.90417 7.71667 10 8 10ZM4 16H10V2H4V16Z"
+                fill="#424945"
+              />
+            </svg>
+            <div className="flex flex-col items-start w-fit">
+              <p className="text-[#424945] font-hankenGrotesk text-sm font-semibold leading-[22px] w-fit">
+                Room Reservations
+              </p>
+            </div>
+          </div>
+          <div className="flex py-3.5 px-8 items-center gap-3 w-full">
+            <svg
+              width="22"
+              height="16"
+              viewBox="0 0 22 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex flex-col items-start w-fit "
+            >
+              <path
+                d="M13 9C12.1667 9 11.4583 8.70833 10.875 8.125C10.2917 7.54167 10 6.83333 10 6C10 5.16667 10.2917 4.45833 10.875 3.875C11.4583 3.29167 12.1667 3 13 3C13.8333 3 14.5417 3.29167 15.125 3.875C15.7083 4.45833 16 5.16667 16 6C16 6.83333 15.7083 7.54167 15.125 8.125C14.5417 8.70833 13.8333 9 13 9ZM6 12C5.45 12 4.97917 11.8042 4.5875 11.4125C4.19583 11.0208 4 10.55 4 10V2C4 1.45 4.19583 0.979167 4.5875 0.5875C4.97917 0.195833 5.45 0 6 0H20C20.55 0 21.0208 0.195833 21.4125 0.5875C21.8042 0.979167 22 1.45 22 2V10C22 10.55 21.8042 11.0208 21.4125 11.4125C21.0208 11.8042 20.55 12 20 12H6ZM8 10H18C18 9.45 18.1958 8.97917 18.5875 8.5875C18.9792 8.19583 19.45 8 20 8V4C19.45 4 18.9792 3.80417 18.5875 3.4125C18.1958 3.02083 18 2.55 18 2H8C8 2.55 7.80417 3.02083 7.4125 3.4125C7.02083 3.80417 6.55 4 6 4V8C6.55 8 7.02083 8.19583 7.4125 8.5875C7.80417 8.97917 8 9.45 8 10ZM19 16H2C1.45 16 0.979167 15.8042 0.5875 15.4125C0.195833 15.0208 0 14.55 0 14V3H2V14H19V16ZM6 10V2V10Z"
+                fill="#424945"
+              />
+            </svg>
+            <div className="flex flex-col items-start w-fit">
+              <p className="text-[#424945] font-hankenGrotesk text-sm font-semibold leading-[22px] w-fit">
+                Loan &amp; Fees
+              </p>
+            </div>
+          </div>
+          <div className="flex py-3.5 px-8 items-center gap-3 w-full">
+            <svg
+              width="22"
+              height="20"
+              viewBox="0 0 22 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex flex-col items-start w-fit "
+            >
+              <path
+                d="M11 19.5C10.2 18.8667 9.33333 18.375 8.4 18.025C7.46667 17.675 6.5 17.5 5.5 17.5C4.8 17.5 4.1125 17.5917 3.4375 17.775C2.7625 17.9583 2.11667 18.2167 1.5 18.55C1.15 18.7333 0.8125 18.725 0.4875 18.525C0.1625 18.325 0 18.0333 0 17.65V5.6C0 5.41667 0.0458333 5.24167 0.1375 5.075C0.229167 4.90833 0.366667 4.78333 0.55 4.7C1.31667 4.3 2.11667 4 2.95 3.8C3.78333 3.6 4.63333 3.5 5.5 3.5C6.46667 3.5 7.4125 3.625 8.3375 3.875C9.2625 4.125 10.15 4.5 11 5V17.1C11.85 16.5667 12.7417 16.1667 13.675 15.9C14.6083 15.6333 15.55 15.5 16.5 15.5C17.1 15.5 17.6875 15.55 18.2625 15.65C18.8375 15.75 19.4167 15.9 20 16.1V4.1C20.25 4.18333 20.4958 4.27083 20.7375 4.3625C20.9792 4.45417 21.2167 4.56667 21.45 4.7C21.6333 4.78333 21.7708 4.90833 21.8625 5.075C21.9542 5.24167 22 5.41667 22 5.6V17.65C22 18.0333 21.8375 18.325 21.5125 18.525C21.1875 18.725 20.85 18.7333 20.5 18.55C19.8833 18.2167 19.2375 17.9583 18.5625 17.775C17.8875 17.5917 17.2 17.5 16.5 17.5C15.5 17.5 14.5333 17.675 13.6 18.025C12.6667 18.375 11.8 18.8667 11 19.5ZM13 14.5V5L18 0V10L13 14.5ZM9 16.125V6.225C8.45 5.99167 7.87917 5.8125 7.2875 5.6875C6.69583 5.5625 6.1 5.5 5.5 5.5C4.88333 5.5 4.28333 5.55833 3.7 5.675C3.11667 5.79167 2.55 5.96667 2 6.2V16.125C2.58333 15.9083 3.1625 15.75 3.7375 15.65C4.3125 15.55 4.9 15.5 5.5 15.5C6.1 15.5 6.6875 15.55 7.2625 15.65C7.8375 15.75 8.41667 15.9083 9 16.125ZM9 16.125V6.225V16.125Z"
+                fill="#424945"
+              />
+            </svg>
+            <div className="flex flex-col items-start w-fit">
+              <p className="text-[#424945] font-hankenGrotesk text-sm font-semibold leading-[22px] w-fit">
+                Recommended Books
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex pt-8 pr-10 pb-8 pl-[113px] items-center gap-[271px] border-t border-t-[#C5C6CD] bg-[#FFF] w-[1522px] h-[445px] absolute left-0 top-[2546px]">
+        <div className="flex flex-col items-start gap-1 w-fit">
+          <p className="text-[#091426] font-inter text-2xl font-black leading-8 w-fit">
+            LIMA
+          </p>
+          <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+            © 2024 LIMA Academic Library System. All Rights Reserved.
+          </p>
+        </div>
+        <div className="flex justify-center items-start gap-8 w-fit">
+          <div className="flex flex-col items-start w-fit h-full">
+            <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+              Accessibility
+            </p>
+          </div>
+          <div className="flex flex-col items-start w-fit h-full">
+            <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+              Privacy Policy
+            </p>
+          </div>
+          <div className="flex flex-col items-start w-fit h-full">
+            <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+              Terms of Service
+            </p>
+          </div>
+          <div className="flex flex-col items-start w-fit h-full">
+            <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+              Contact Us
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="w-[1182px] h-[3260px] absolute left-[245px] -top-[850px]">
+        <div className="w-[1181px] h-[1088px] absolute left-px top-[1215px]">
+          <div className="w-[1181px] h-[579px] absolute left-0 top-[45px]">
+            <div className="w-[1181px] h-[311px] absolute left-0 top-[268px] overflow-hidden">
+              <div className="flex pb-4 flex-col items-start w-16 h-20 absolute left-[1164px] top-[123px]"></div>
+            </div>
+            <div className="flex items-start gap-2 w-[62px] absolute left-[1021px] top-0">
+              <div className="flex p-2 flex-col justify-center items-center rounded-full border border-[#C5C6CD] w-fit">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="flex justify-center items-start w-fit "
+                >
+                  <path
+                    d="M3.825 9L9.425 14.6L8 16L0 8L8 0L9.425 1.4L3.825 7H16V9H3.825Z"
+                    fill="#0B1C30"
+                  />
+                </svg>
+              </div>
+              <div className="flex p-2 flex-col justify-center items-center rounded-full border border-[#C5C6CD] w-fit">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="flex justify-center items-start w-fit "
+                >
+                  <path
+                    d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z"
+                    fill="#0B1C30"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div className="inline-flex pb-[25px] justify-end items-start gap-[104px] w-[1079px] h-[503px] absolute left-14 top-[229px] overflow-hidden">
+            <div className="flex min-w-[280px] flex-col items-start rounded-xl border border-[#C5C6CD] bg-[#FFF] h-[479px] absolute left-0 top-0 overflow-hidden">
+              <div className="flex flex-col justify-center items-start bg-[#E5EEFF] w-fit overflow-hidden relative">
+                <img
+                  src="/Ab6axudgephgjlfypundjddc4n9ybuj0nkjc_hap3gxxfk34c8epdztjzergki9iwvgpziosz5ja2h6er4hb99fqojdgxm8zoof_easnyzvsdilbrrfcak5xrstlosh5zlv1peqhuxikmbqhcq5ehttwxas0kszlbduvgohbaenantwpz1grwh500qybeyb8rpbrlh8tazcddlofzrwmwaiwacxlz_n2hplywhn__1p64foljgbvvqx8d83tltqgxroyzrxt88mhkr3xci.png"
+                  className="w-full h-[348px] overflow-hidden max-w-none"
+                  alt="AB6AXuDgEpHgjlfYPUNDJDDC4N9ybuJ0nKjc_hAp3GxXfk34C8ePdZTjzergkI9IwvgPziOsZ5JA2H6ER4Hb99fQoJdGxm8ZOOF_easNyzVSdiLBRrFcak5XRStLoSH5ZlV1PEQhUxikmbQHcq5EHTTwXAs0kSZlBdUVgOHbAEnaNTWpZ1GRWh500QYbeyb8RpBrlH8tazCDDlofzRwMwAiWAcXLZ_N2HPlYWHn__1p64folJgbV-vQX8D83tltqgXrOyZrxt88MHKR3xCI"
+                />
+                <div className="flex justify-center items-center absolute w-[278px] h-[348px]">
+                  <div className="flex p-2 flex-col items-start rounded-full bg-[#FFF] w-fit relative">
+                    <div className="absolute -right-0 rounded-full bg-[rgba(255,255,255,0.00)] shadow-[020px25px-5pxrgba(0,0,0,0.10),08px10px-6pxrgba(0,0,0,0.10)] w-[38px] h-[31px]"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex p-4 flex-col items-start gap-1 w-fit">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#006F66] font-inter text-xs font-medium leading-4 w-fit tracking-[0.02em]">
+                    URBAN PLANNING
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full overflow-hidden">
+                  <p className="text-[#091426] font-inter text-base font-bold leading-6 w-fit">
+                    Urbanism in the Digital Age
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+                    Dr. Julian Vance
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex min-w-[280px] flex-col items-start rounded-xl border border-[#C5C6CD] bg-[#FFF] h-[479px] absolute left-96 top-0 overflow-hidden">
+              <div className="flex flex-col justify-center items-start bg-[#E5EEFF] w-fit overflow-hidden relative">
+                <img
+                  src="/Ab6axuadx02ucdxemd3basyrbhl7gyievycb5ykf_xxfdira_kocobnbvlhsukwbsytzccrbhnyeowqjlodajegccrg5jyjsm5kreaqhbfpzw196fehz4cn4dne5lpxiddthrtp2kpxxkcth4nqmc5tfipu51wwji8ziw9ipgjqt1xbylj9w7sai9ixdiripzea7ptmjv4olxp77vj3qzcf4n3yq0cydlcgoeaqzeekrlhlhcwddm7kx1_zc4yqoyps9lmzh5t56u7su.png"
+                  className="w-full h-[348px] overflow-hidden max-w-none"
+                  alt="AB6AXuAdx02uCDxemd3bAsYrBHl7gy-iEVYcb5Ykf_xxfDirA_KOcobNbvlhSuKWbSyTZCcRBHNyeOWQjlODAJeGCc-rg5JYJSm5kREaqhBFPzW196FEhz4cn4dNE5LpXIddtHrtp2kPXxkCth4NQMC5Tfipu51WWji8ziW9ipgjqt1xbylJ9W7SaI9IxdIrIpzeA7pTMjv4olXP77vJ3QZCF-4N3yq0CYdLCgOeaqzeEKrlhLhcwdDm7Kx1_Zc4YQOYps9LmzH5t56u7sU"
+                />
+                <div className="flex justify-center items-center absolute w-[278px] h-[348px]">
+                  <div className="flex p-2 flex-col items-start rounded-full bg-[#FFF] w-fit relative">
+                    <div className="absolute -right-0 rounded-full bg-[rgba(255,255,255,0.00)] shadow-[020px25px-5pxrgba(0,0,0,0.10),08px10px-6pxrgba(0,0,0,0.10)] w-[38px] h-[31px]"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex p-4 flex-col items-start gap-1 w-fit">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#006F66] font-inter text-xs font-medium leading-4 w-fit tracking-[0.02em]">
+                    SUSTAINABILITY
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full overflow-hidden">
+                  <p className="text-[#091426] font-inter text-base font-bold leading-6 w-fit">
+                    Sustainable Structuralism
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+                    Sarah G. Aris
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex min-w-[280px] flex-col items-start rounded-xl border border-[#C5C6CD] bg-[#FFF] h-[479px] absolute left-[768px] top-0 overflow-hidden">
+              <div className="flex flex-col justify-center items-start bg-[#E5EEFF] w-fit overflow-hidden relative">
+                <img
+                  src="/Ab6axuados7zrilzrewclwddkpronqpf40paswjnibqeyfig5yyymm3wavcwiedtde77ooremekhvi4rmq8txpoy_ztjrlzxrpwywwhsj1gelq0gviokllqfksy0mvtqb6p55lyhbvx7ontarprgznppswr86sz3z07fgzb1punafync77neym30h5vretpxtdxh1abqavj8x4tia4ewebxd2bdhhun0gnpgm00vcz5d4rxmahqnieayurc7qku3cegkw4mcyldpoaeu.png"
+                  className="w-full h-[348px] overflow-hidden max-w-none"
+                  alt="AB6AXuADOs7zrILzRewCLWdDKpRONqpF40paSwjNibqeyfIg5yYymM3wAvcWiEDtde77OoreMEkhVI4RMq8TxpoY_zTjRlZxrpwywwHsJ1GELQ0GviokLl-qfKSY0MvTqB6P55LyHbvx7oNTArPRGzNPPsWr86sz3Z07Fgzb1pUnaFyNc77NEym30h5VretPxTdXH1AbqaVJ8X4TiA4eWEbXd2BDhHUN0gNpgM00VCz5d4rXmahq-NIeaYurC7QKu3c-Egkw4MCyldpoaEU"
+                />
+                <div className="flex justify-center items-center absolute w-[278px] h-[348px]">
+                  <div className="flex p-2 flex-col items-start rounded-full bg-[#FFF] w-fit relative">
+                    <div className="absolute -right-0 rounded-full bg-[rgba(255,255,255,0.00)] shadow-[020px25px-5pxrgba(0,0,0,0.10),08px10px-6pxrgba(0,0,0,0.10)] w-[38px] h-[31px]"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex p-4 flex-col items-start gap-1 w-fit">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#006F66] font-inter text-xs font-medium leading-4 w-fit tracking-[0.02em]">
+                    HISTORY
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full overflow-hidden">
+                  <p className="text-[#091426] font-inter text-base font-bold leading-6 w-fit">
+                    The Bauhaus Legacy
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+                    Marcus Thorne
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex min-w-[280px] flex-col items-start rounded-xl border border-[#C5C6CD] bg-[#FFF] h-[479px] absolute left-[1152px] top-0 overflow-hidden">
+              <div className="flex flex-col justify-center items-start bg-[#E5EEFF] w-fit overflow-hidden relative">
+                <img
+                  src="/Ab6axuci2gkd3dqh5cmgkspkhhffcri1mk8t0gawo4td5p8vs6kttglhr7p17gjrslhwzlnujn3bvlua0eekmcmtlurel2h7l6fr2wifoc0ltkkqh0hgpqz6phwdh6pwjzotzvh47jy2jc0voht3lix69e7ywtsrohqrdvaca6witu1mzpxhzy78bfhhgqev14ikg1lhpske16y5btjt74oplhrfttjec0fadfdwlvuhw45elmcdgxh9wjl8katf0qgpi2ms0znyo.png"
+                  className="w-full h-[348px] overflow-hidden max-w-none"
+                  alt="AB6AXuCI2GKD3DQh5CMGkSPkHhFfCRi1Mk8T0gAwO4TD5p-8Vs6KttglHr7P17GjRsLhWzLNuJ-n3BVLuA0Eek-mcM-TLuRel2H7L6fR2wIfoc0LtKkQH0Hgpqz6phWDh6PwjzOtzvH47jy2J-c0vOht3LIX69E7YWtsrOhqRdvaCA6WitU1mZpxhZy78BFhhgQEv14Ikg1LHpSke16y5BtJT74OPlHrftTjeC0FadF-DWLvuHw45ElmcdGxh9wjL8kaTF0QGpI2mS0zNYo"
+                />
+                <div className="flex justify-center items-center absolute w-[278px] h-[348px]">
+                  <div className="flex p-2 flex-col items-start rounded-full bg-[#FFF] w-fit relative">
+                    <div className="absolute -right-0 rounded-full bg-[rgba(255,255,255,0.00)] shadow-[020px25px-5pxrgba(0,0,0,0.10),08px10px-6pxrgba(0,0,0,0.10)] w-[38px] h-[31px]"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex p-4 flex-col items-start gap-1 w-fit">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#006F66] font-inter text-xs font-medium leading-4 w-fit tracking-[0.02em]">
+                    MATHEMATICS
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full overflow-hidden">
+                  <p className="text-[#091426] font-inter text-base font-bold leading-6 w-fit">
+                    Geometry and Grace in Design
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+                    Linus Feng
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex min-w-[280px] flex-col items-start rounded-xl border border-[#C5C6CD] bg-[#FFF] h-[479px] absolute left-[1536px] top-0 overflow-hidden">
+              <div className="flex flex-col justify-center items-start bg-[#E5EEFF] w-fit overflow-hidden relative">
+                <img
+                  src="/Ab6axudbjt8_fsruufjo9vaiilar9r7khkhqyxyv29n6peup_kssmknkwoc0ulngj_xp_sxwwqma88zavgvf5uig0xnkvxubmxeohxak74l18xruohsorlyywjs8nictzavtllffongfqf29dpznjzur22oezyp2boiyds6o3uh9vhsirkgpkgqdnk_6_ukkjkdmtt_4ionwdmpx9ddgrkgh_xrbrhxevjhqm9zab2e3rdmwiozcipwf6zz6s82_wmzr4qukgykatyc.png"
+                  className="w-full h-[348px] overflow-hidden max-w-none"
+                  alt="AB6AXuDBJT8_FsrUUFjo9VaiILaR9R7KhKhQYXYv29n6pEUP_KssmKNkwoC0UlNgJ_XP_sXWWQMA88ZAvgVF5UiG0XNkVX-ubMxEOHXaK74L18xRUOHSoRlyyWJs8nictZAvtL-lFfongFqf29dpzNjzur22OezYP2B-OIyds6o3UH9vH-sirKgpKgqdnK_6_UKkJkDMtT_4iONWdMpx9DDGRKgH_XrbrhXevjHqm9ZaB2E3RdMwiozCIpwF6ZZ6S82_WMZR4QukgYKAtYc"
+                />
+                <div className="flex justify-center items-center absolute w-[278px] h-[348px]">
+                  <div className="flex p-2 flex-col items-start rounded-full bg-[#FFF] w-fit relative">
+                    <div className="absolute -right-0 rounded-full bg-[rgba(255,255,255,0.00)] shadow-[020px25px-5pxrgba(0,0,0,0.10),08px10px-6pxrgba(0,0,0,0.10)] w-[38px] h-[31px]"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex p-4 flex-col items-start gap-1 w-fit">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#006F66] font-inter text-xs font-medium leading-4 w-fit tracking-[0.02em]">
+                    COMPUTATION
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full overflow-hidden">
+                  <p className="text-[#091426] font-inter text-base font-bold leading-6 w-fit">
+                    Parametric Paradigms
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+                    Ava Chen
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="inline-flex min-h-[1088px] pt-8 pr-[360px] pb-[411px] pl-8 flex-col items-start gap-[72px] absolute left-10 top-0">
+            <p className="text-[#03192E] font-manrope text-xl font-bold leading-7 absolute left-8 top-8">
+              Based on your reading history
+            </p>
+          </div>
+        </div>
+        <div className="flex items-start gap-2 w-[62px] absolute left-[1010px] top-[2198px]">
+          <div className="flex p-2 flex-col justify-center items-center rounded-full border border-[#C5C6CD] w-fit">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex justify-center items-start w-fit "
+            >
+              <path
+                d="M3.825 9L9.425 14.6L8 16L0 8L8 0L9.425 1.4L3.825 7H16V9H3.825Z"
+                fill="#0B1C30"
+              />
+            </svg>
+          </div>
+          <div className="flex p-2 flex-col justify-center items-center rounded-full border border-[#C5C6CD] w-fit">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex justify-center items-start w-fit "
+            >
+              <path
+                d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z"
+                fill="#0B1C30"
+              />
+            </svg>
+          </div>
+        </div>
+        <p className="text-[#000] font-hankenGrotesk text-[32px] font-bold leading-10 w-[648px] h-10 absolute left-[74px] top-[1051px] tracking-[-0.02em]">
+          Recommended Books
+        </p>
+        <div className="w-[1181px] h-[3260px] absolute left-0 top-0">
+          <div className="w-[1181px] h-[2777px] absolute left-0 top-0">
+            <div className="w-[1181px] h-[311px] absolute left-0 top-[2466px] overflow-hidden">
+              <div className="flex pb-4 flex-col items-start w-16 h-20 absolute left-[1164px] top-[123px]"></div>
+            </div>
+            <div className="flex items-start gap-2 w-[62px] absolute left-[1046px] top-0">
+              <div className="flex p-2 flex-col justify-center items-center rounded-full border border-[#C5C6CD] w-fit"></div>
+              <div className="flex p-2 flex-col justify-center items-center rounded-full border border-[#C5C6CD] w-fit"></div>
+            </div>
+          </div>
+          <div className="inline-flex pb-[25px] justify-end items-start gap-[104px] w-[1079px] h-[503px] absolute left-14 top-[2382px] overflow-hidden">
+            <div className="flex min-w-[280px] flex-col items-start rounded-xl border border-[#C5C6CD] bg-[#FFF] h-[479px] absolute left-0 top-0 overflow-hidden">
+              <div className="flex flex-col justify-center items-start bg-[#E5EEFF] w-fit overflow-hidden relative">
+                <img
+                  src="/Ab6axudgephgjlfypundjddc4n9ybuj0nkjc_hap3gxxfk34c8epdztjzergki9iwvgpziosz5ja2h6er4hb99fqojdgxm8zoof_easnyzvsdilbrrfcak5xrstlosh5zlv1peqhuxikmbqhcq5ehttwxas0kszlbduvgohbaenantwpz1grwh500qybeyb8rpbrlh8tazcddlofzrwmwaiwacxlz_n2hplywhn__1p64foljgbvvqx8d83tltqgxroyzrxt88mhkr3xci(1).png"
+                  className="w-full h-[348px] overflow-hidden max-w-none"
+                  alt="AB6AXuDgEpHgjlfYPUNDJDDC4N9ybuJ0nKjc_hAp3GxXfk34C8ePdZTjzergkI9IwvgPziOsZ5JA2H6ER4Hb99fQoJdGxm8ZOOF_easNyzVSdiLBRrFcak5XRStLoSH5ZlV1PEQhUxikmbQHcq5EHTTwXAs0kSZlBdUVgOHbAEnaNTWpZ1GRWh500QYbeyb8RpBrlH8tazCDDlofzRwMwAiWAcXLZ_N2HPlYWHn__1p64folJgbV-vQX8D83tltqgXrOyZrxt88MHKR3xCI"
+                />
+                <div className="flex justify-center items-center absolute w-[278px] h-[348px]">
+                  <div className="flex p-2 flex-col items-start rounded-full bg-[#FFF] w-fit relative">
+                    <div className="absolute -right-0 rounded-full bg-[rgba(255,255,255,0.00)] shadow-[020px25px-5pxrgba(0,0,0,0.10),08px10px-6pxrgba(0,0,0,0.10)] w-[38px] h-[31px]"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex p-4 flex-col items-start gap-1 w-fit">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#006F66] font-inter text-xs font-medium leading-4 w-fit tracking-[0.02em]">
+                    URBAN PLANNING
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full overflow-hidden">
+                  <p className="text-[#091426] font-inter text-base font-bold leading-6 w-fit">
+                    Urbanism in the Digital Age
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+                    Dr. Julian Vance
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex min-w-[280px] flex-col items-start rounded-xl border border-[#C5C6CD] bg-[#FFF] h-[479px] absolute left-96 top-0 overflow-hidden">
+              <div className="flex flex-col justify-center items-start bg-[#E5EEFF] w-fit overflow-hidden relative">
+                <img
+                  src="/Ab6axuadx02ucdxemd3basyrbhl7gyievycb5ykf_xxfdira_kocobnbvlhsukwbsytzccrbhnyeowqjlodajegccrg5jyjsm5kreaqhbfpzw196fehz4cn4dne5lpxiddthrtp2kpxxkcth4nqmc5tfipu51wwji8ziw9ipgjqt1xbylj9w7sai9ixdiripzea7ptmjv4olxp77vj3qzcf4n3yq0cydlcgoeaqzeekrlhlhcwddm7kx1_zc4yqoyps9lmzh5t56u7su(1).png"
+                  className="w-full h-[348px] overflow-hidden max-w-none"
+                  alt="AB6AXuAdx02uCDxemd3bAsYrBHl7gy-iEVYcb5Ykf_xxfDirA_KOcobNbvlhSuKWbSyTZCcRBHNyeOWQjlODAJeGCc-rg5JYJSm5kREaqhBFPzW196FEhz4cn4dNE5LpXIddtHrtp2kPXxkCth4NQMC5Tfipu51WWji8ziW9ipgjqt1xbylJ9W7SaI9IxdIrIpzeA7pTMjv4olXP77vJ3QZCF-4N3yq0CYdLCgOeaqzeEKrlhLhcwdDm7Kx1_Zc4YQOYps9LmzH5t56u7sU"
+                />
+                <div className="flex justify-center items-center absolute w-[278px] h-[348px]">
+                  <div className="flex p-2 flex-col items-start rounded-full bg-[#FFF] w-fit relative">
+                    <div className="absolute -right-0 rounded-full bg-[rgba(255,255,255,0.00)] shadow-[020px25px-5pxrgba(0,0,0,0.10),08px10px-6pxrgba(0,0,0,0.10)] w-[38px] h-[31px]"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex p-4 flex-col items-start gap-1 w-fit">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#006F66] font-inter text-xs font-medium leading-4 w-fit tracking-[0.02em]">
+                    SUSTAINABILITY
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full overflow-hidden">
+                  <p className="text-[#091426] font-inter text-base font-bold leading-6 w-fit">
+                    Sustainable Structuralism
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+                    Sarah G. Aris
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex min-w-[280px] flex-col items-start rounded-xl border border-[#C5C6CD] bg-[#FFF] h-[479px] absolute left-[768px] top-0 overflow-hidden">
+              <div className="flex flex-col justify-center items-start bg-[#E5EEFF] w-fit overflow-hidden relative">
+                <img
+                  src="/Ab6axuados7zrilzrewclwddkpronqpf40paswjnibqeyfig5yyymm3wavcwiedtde77ooremekhvi4rmq8txpoy_ztjrlzxrpwywwhsj1gelq0gviokllqfksy0mvtqb6p55lyhbvx7ontarprgznppswr86sz3z07fgzb1punafync77neym30h5vretpxtdxh1abqavj8x4tia4ewebxd2bdhhun0gnpgm00vcz5d4rxmahqnieayurc7qku3cegkw4mcyldpoaeu(1).png"
+                  className="w-full h-[348px] overflow-hidden max-w-none"
+                  alt="AB6AXuADOs7zrILzRewCLWdDKpRONqpF40paSwjNibqeyfIg5yYymM3wAvcWiEDtde77OoreMEkhVI4RMq8TxpoY_zTjRlZxrpwywwHsJ1GELQ0GviokLl-qfKSY0MvTqB6P55LyHbvx7oNTArPRGzNPPsWr86sz3Z07Fgzb1pUnaFyNc77NEym30h5VretPxTdXH1AbqaVJ8X4TiA4eWEbXd2BDhHUN0gNpgM00VCz5d4rXmahq-NIeaYurC7QKu3c-Egkw4MCyldpoaEU"
+                />
+                <div className="flex justify-center items-center absolute w-[278px] h-[348px]">
+                  <div className="flex p-2 flex-col items-start rounded-full bg-[#FFF] w-fit relative">
+                    <div className="absolute -right-0 rounded-full bg-[rgba(255,255,255,0.00)] shadow-[020px25px-5pxrgba(0,0,0,0.10),08px10px-6pxrgba(0,0,0,0.10)] w-[38px] h-[31px]"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex p-4 flex-col items-start gap-1 w-fit">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#006F66] font-inter text-xs font-medium leading-4 w-fit tracking-[0.02em]">
+                    HISTORY
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full overflow-hidden">
+                  <p className="text-[#091426] font-inter text-base font-bold leading-6 w-fit">
+                    The Bauhaus Legacy
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+                    Marcus Thorne
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex min-w-[280px] flex-col items-start rounded-xl border border-[#C5C6CD] bg-[#FFF] h-[479px] absolute left-[1152px] top-0 overflow-hidden">
+              <div className="flex flex-col justify-center items-start bg-[#E5EEFF] w-fit overflow-hidden relative">
+                <img
+                  src="/Ab6axuci2gkd3dqh5cmgkspkhhffcri1mk8t0gawo4td5p8vs6kttglhr7p17gjrslhwzlnujn3bvlua0eekmcmtlurel2h7l6fr2wifoc0ltkkqh0hgpqz6phwdh6pwjzotzvh47jy2jc0voht3lix69e7ywtsrohqrdvaca6witu1mzpxhzy78bfhhgqev14ikg1lhpske16y5btjt74oplhrfttjec0fadfdwlvuhw45elmcdgxh9wjl8katf0qgpi2ms0znyo(1).png"
+                  className="w-full h-[348px] overflow-hidden max-w-none"
+                  alt="AB6AXuCI2GKD3DQh5CMGkSPkHhFfCRi1Mk8T0gAwO4TD5p-8Vs6KttglHr7P17GjRsLhWzLNuJ-n3BVLuA0Eek-mcM-TLuRel2H7L6fR2wIfoc0LtKkQH0Hgpqz6phWDh6PwjzOtzvH47jy2J-c0vOht3LIX69E7YWtsrOhqRdvaCA6WitU1mZpxhZy78BFhhgQEv14Ikg1LHpSke16y5BtJT74OPlHrftTjeC0FadF-DWLvuHw45ElmcdGxh9wjL8kaTF0QGpI2mS0zNYo"
+                />
+                <div className="flex justify-center items-center absolute w-[278px] h-[348px]">
+                  <div className="flex p-2 flex-col items-start rounded-full bg-[#FFF] w-fit relative">
+                    <div className="absolute -right-0 rounded-full bg-[rgba(255,255,255,0.00)] shadow-[020px25px-5pxrgba(0,0,0,0.10),08px10px-6pxrgba(0,0,0,0.10)] w-[38px] h-[31px]"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex p-4 flex-col items-start gap-1 w-fit">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#006F66] font-inter text-xs font-medium leading-4 w-fit tracking-[0.02em]">
+                    MATHEMATICS
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full overflow-hidden">
+                  <p className="text-[#091426] font-inter text-base font-bold leading-6 w-fit">
+                    Geometry and Grace in Design
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+                    Linus Feng
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex min-w-[280px] flex-col items-start rounded-xl border border-[#C5C6CD] bg-[#FFF] h-[479px] absolute left-[1536px] top-0 overflow-hidden">
+              <div className="flex flex-col justify-center items-start bg-[#E5EEFF] w-fit overflow-hidden relative">
+                <img
+                  src="/Ab6axudbjt8_fsruufjo9vaiilar9r7khkhqyxyv29n6peup_kssmknkwoc0ulngj_xp_sxwwqma88zavgvf5uig0xnkvxubmxeohxak74l18xruohsorlyywjs8nictzavtllffongfqf29dpznjzur22oezyp2boiyds6o3uh9vhsirkgpkgqdnk_6_ukkjkdmtt_4ionwdmpx9ddgrkgh_xrbrhxevjhqm9zab2e3rdmwiozcipwf6zz6s82_wmzr4qukgykatyc(1).png"
+                  className="w-full h-[348px] overflow-hidden max-w-none"
+                  alt="AB6AXuDBJT8_FsrUUFjo9VaiILaR9R7KhKhQYXYv29n6pEUP_KssmKNkwoC0UlNgJ_XP_sXWWQMA88ZAvgVF5UiG0XNkVX-ubMxEOHXaK74L18xRUOHSoRlyyWJs8nictZAvtL-lFfongFqf29dpzNjzur22OezYP2B-OIyds6o3UH9vH-sirKgpKgqdnK_6_UKkJkDMtT_4iONWdMpx9DDGRKgH_XrbrhXevjHqm9ZaB2E3RdMwiozCIpwF6ZZ6S82_WMZR4QukgYKAtYc"
+                />
+                <div className="flex justify-center items-center absolute w-[278px] h-[348px]">
+                  <div className="flex p-2 flex-col items-start rounded-full bg-[#FFF] w-fit relative">
+                    <div className="absolute -right-0 rounded-full bg-[rgba(255,255,255,0.00)] shadow-[020px25px-5pxrgba(0,0,0,0.10),08px10px-6pxrgba(0,0,0,0.10)] w-[38px] h-[31px]"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex p-4 flex-col items-start gap-1 w-fit">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#006F66] font-inter text-xs font-medium leading-4 w-fit tracking-[0.02em]">
+                    COMPUTATION
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full overflow-hidden">
+                  <p className="text-[#091426] font-inter text-base font-bold leading-6 w-fit">
+                    Parametric Paradigms
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#45474C] font-inter text-sm leading-5 w-fit">
+                    Ava Chen
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex min-h-[1088px] pt-8 pr-[360px] pb-[411px] pl-8 flex-col items-start gap-[72px] w-[1040px] absolute left-[25px] top-[2172px]">
+            <p className="text-[#03192E] font-manrope text-xl font-bold leading-7 w-fit">
+              Trending this week
+            </p>
+          </div>
+        </div>
+        <div className="inline-flex py-2.5 px-6 items-center gap-2 rounded-full border border-[#03192E] absolute left-[915px] top-[1071px]">
+          <svg
+            width="11"
+            height="11"
+            viewBox="0 0 11 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="flex flex-col items-center absolute left-[25px] top-3.5 "
+          >
+            <path
+              d="M5.25 10.5C3.78438 10.5 2.54297 9.99164 1.52578 8.97489C0.508594 7.95815 0 6.71728 0 5.25229C0 3.7873 0.508594 2.54568 1.52578 1.52741C2.54297 0.509135 3.78438 0 5.25 0C6.14135 0 6.97597 0.211779 7.75385 0.635336C8.53174 1.05889 9.15866 1.65 9.63462 2.40865V0H10.3846V3.92308H6.46154V3.17308H9.23654C8.84616 2.425 8.29688 1.83414 7.58871 1.40048C6.88053 0.966831 6.10097 0.750005 5.25 0.750005C4 0.750005 2.9375 1.1875 2.0625 2.0625C1.1875 2.9375 0.750005 4 0.750005 5.25C0.750005 6.5 1.1875 7.5625 2.0625 8.4375C2.9375 9.3125 4 9.75 5.25 9.75C6.2125 9.75 7.08125 9.47501 7.85625 8.925C8.63125 8.375 9.175 7.65 9.4875 6.75H10.2837C9.95289 7.87308 9.32453 8.77885 8.39857 9.46732C7.4726 10.1558 6.42308 10.5 5.25 10.5Z"
+              fill="#03192E"
+            />
+          </svg>
+          <p className="text-[#03192E] font-hankenGrotesk text-xs font-bold leading-4 absolute left-[43px] top-[11px] text-center tracking-[0.05em]">
+            Refresh Suggestions
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

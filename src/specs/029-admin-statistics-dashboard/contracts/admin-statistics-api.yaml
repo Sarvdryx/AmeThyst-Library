@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: Admin Statistics API
+  version: 1.0.0
+  description: API endpoints for Admin Statistics Dashboard reporting and metrics visualization.
+paths:
+  /api/admin/statistics:
+    get:
+      summary: Retrieve Admin Statistics Dashboard Data
+      description: Returns executive KPI metrics, top 10 categories borrow turns, top borrowed books, and top reserved study rooms per branch.
+      parameters:
+        - name: timeframe
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [week, month]
+            default: week
+          description: Time window for filtering data (This Week vs. This Month).
+        - name: branch_id
+          in: query
+          required: false
+          schema:
+            type: string
+            default: all
+          description: Specific branch ID to filter by, or 'all' for all locations.
+      responses:
+        '200':
+          description: Successfully fetched statistics data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      filter:
+                        type: object
+                        properties:
+                          timeframe:
+                            type: string
+                            example: week
+                          branch_id:
+                            type: string
+                            example: all
+                      summaryMetrics:
+                        type: object
+                        properties:
+                          totalUsers:
+                            type: integer
+                          usersGrowthPct:
+                            type: number
+                          activeBorrows:
+                            type: integer
+                          totalBorrows:
+                            type: integer
+                          overdueBooksCount:
+                            type: integer
+                          totalLateFees:
+                            type: number
+                      topCategories:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            rank:
+                              type: integer
+                            categoryId:
+                              type: string
+                            categoryName:
+                              type: string
+                            borrowTurns:
+                              type: integer
+                            percentageShare:
+                              type: number
+                      topBooks:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            rank:
+                              type: integer
+                            bookId:
+                              type: string
+                            title:
+                              type: string
+                            coverUrl:
+                              type: string
+                            borrowCount:
+                              type: integer
+                            popularityPct:
+                              type: number
+                      topRoomsByBranch:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            roomId:
+                              type: string
+                            roomName:
+                              type: string
+                            branchId:
+                              type: string
+                            branchName:
+                              type: string
+                            reservationTurns:
+                              type: integer
+        '401':
+          description: Unauthorized access (Admin privileges required).
+        '500':
+          description: Internal server error.

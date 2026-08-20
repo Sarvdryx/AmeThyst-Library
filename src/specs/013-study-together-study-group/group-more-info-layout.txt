@@ -1,0 +1,368 @@
+export default function Group2() {
+  return (
+    <div className="min-w-screen min-h-screen absolute left-[86px] top-[447px]">
+      <div className="flex flex-col items-start gap-[70px] w-[858px] h-[520px] absolute left-0 top-0">
+        <div className="flex p-12 flex-col items-start gap-6 bg-[#FFF] shadow-[01px2px0rgba(0,0,0,0.05)] w-full">
+          <div className="flex justify-between items-center w-full">
+            <div className="flex items-center gap-3 w-fit">
+              <svg
+                width="18"
+                height="20"
+                viewBox="0 0 18 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="flex flex-col items-start w-fit "
+              >
+                <path
+                  d="M2 20C1.45 20 0.979167 19.8042 0.5875 19.4125C0.195833 19.0208 0 18.55 0 18V4C0 3.45 0.195833 2.97917 0.5875 2.5875C0.979167 2.19583 1.45 2 2 2H3V0H5V2H13V0H15V2H16C16.55 2 17.0208 2.19583 17.4125 2.5875C17.8042 2.97917 18 3.45 18 4V18C18 18.55 17.8042 19.0208 17.4125 19.4125C17.0208 19.8042 16.55 20 16 20H2ZM2 18H16V8H2V18ZM2 6H16V4H2V6ZM2 6V4V6ZM4 12V10H14V12H4ZM4 16V14H11V16H4Z"
+                  fill="#131B2E"
+                />
+              </svg>
+              <div className="flex justify-end items-center w-[333px] h-[31px]">
+                <p className="text-[#000] font-inter text-2xl font-semibold leading-[31.2px] w-[552px] h-8 tracking-[0.1667em]">
+                  Organic Chemistry II Symposium
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1 w-fit">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="flex flex-col items-center w-fit "
+              >
+                <path
+                  d="M2 16H3.425L13.2 6.225L11.775 4.8L2 14.575V16ZM0 18V13.75L13.2 0.575C13.4 0.391667 13.6208 0.25 13.8625 0.15C14.1042 0.05 14.3583 0 14.625 0C14.8917 0 15.15 0.05 15.4 0.15C15.65 0.25 15.8667 0.4 16.05 0.6L17.425 2C17.625 2.18333 17.7708 2.4 17.8625 2.65C17.9542 2.9 18 3.15 18 3.4C18 3.66667 17.9542 3.92083 17.8625 4.1625C17.7708 4.40417 17.625 4.625 17.425 4.825L4.25 18H0ZM16 3.4L14.6 2L16 3.4ZM12.475 5.525L11.775 4.8L13.2 6.225L12.475 5.525Z"
+                  fill="#45464D"
+                />
+              </svg>
+              <div className="flex flex-col items-center w-fit">
+                <p className="text-[#45464D] font-inter text-sm font-medium leading-[14px] w-fit tracking-[0.05em]">
+                  Edit Settings
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="inline-grid w-full relative">
+            <div className="flex flex-col items-start gap-1 w-full absolute left-0 top-0">
+              <p className="text-[#45464D] font-inter text-xs font-semibold leading-3 w-fit">
+                DATE
+              </p>
+              <div className="flex pb-px flex-col items-start w-full">
+                <p className="text-[#0D1C2E] font-inter text-lg font-semibold leading-[28.8px] w-full">
+                  October 24, 2023
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col items-start gap-1 w-full absolute left-[262px] top-0">
+              <p className="text-[#45464D] font-inter text-xs font-semibold leading-3 w-fit">
+                TIME RANGE
+              </p>
+              <div className="flex pb-px flex-col items-start w-full">
+                <p className="text-[#0D1C2E] font-inter text-lg font-semibold leading-[28.8px] w-full">
+                  4:00 PM - 5:30 PM
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col items-start gap-[5px] w-full absolute left-[524px] top-0">
+              <p className="text-[#45464D] font-inter text-xs font-semibold leading-3 w-fit">
+                LOCATION
+              </p>
+              <div className="flex items-center gap-1 w-full">
+                <button className="cursor-pointer text-nowrap flex justify-center items-center w-36 h-[29px]">
+                  <p className="text-[#0D1C2E] font-inter text-lg font-semibold leading-[28.8px] w-[147px] h-[29px]">
+                    Study Suite A-12
+                  </p>
+                </button>
+                <div className="flex py-0 px-1 flex-col items-start rounded-sm bg-[#DCE9FF] w-fit">
+                  <p className="text-[#131B2E] font-inter text-[10px] font-bold leading-[15px] w-fit">
+                    LEVEL 2
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-start gap-6 w-full">
+          <div className="flex justify-between items-end w-full">
+            <div className="flex flex-col justify-center items-start gap-1 w-[345px] h-[59px]">
+              <div className="flex flex-col items-start w-[345px]">
+                <p className="text-[#0D1C2E] font-inter text-2xl font-semibold leading-[31.2px] w-fit tracking-[0.1667em]">
+                  Members
+                </p>
+              </div>
+              <div className="flex flex-col items-start w-[345px]">
+                <p className="text-[#45464D] font-inter text-base leading-6 w-fit">
+                  Manage existing group participants and roles.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col items-end gap-[5px] w-fit">
+              <p className="text-[#45464D] font-inter text-xs font-semibold leading-3 w-fit">
+                CAPACITY
+              </p>
+              <div className="flex items-center gap-3 w-fit">
+                <svg
+                  width="128"
+                  height="8"
+                  viewBox="0 0 128 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-32 h-2 overflow-hidden relative "
+                >
+                  <g clipPath="url(#clip0_178_687)">
+                    <rect width="128" height="8" rx="4" fill="#E6EEFF" />
+                    <rect width="76.8" height="8" rx="4" fill="black" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_178_687">
+                      <rect width="128" height="8" rx="4" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                <div className="flex flex-col items-end w-fit">
+                  <p className="text-[#000] font-inter text-base font-bold leading-6 w-fit">
+                    3 of 5 seats filled
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="inline-grid w-full relative">
+            <div className="flex py-3 px-6 justify-between items-center border border-[#C6C6CD] bg-[#FFF] w-full h-[98px] absolute left-0 top-0">
+              <div className="flex items-center gap-6 w-fit">
+                <div className="flex flex-col items-start rounded-xl border-2 border-[#DCE9FF] w-12 h-12 overflow-hidden">
+                  <div className="max-w-[48px] shrink-0 bg-[#C4C4C4] w-11 h-11 overflow-hidden"></div>
+                </div>
+                <div className="flex flex-col items-start w-fit">
+                  <div className="flex flex-col items-start w-full">
+                    <p className="text-[#000] font-inter text-base font-bold leading-6 w-fit">
+                      Julianne Devis
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-start w-full">
+                    <p className="text-[#45464D] font-inter text-xs leading-[18px] w-fit tracking-[0.025em]">
+                      LITERATURE MAJOR • LEAD
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex py-1 px-3 flex-col items-start rounded-sm bg-[#DAE2FD] w-fit">
+                <p className="text-[#131B2E] font-inter text-[10px] font-bold leading-[15px] w-fit">
+                  OWNER
+                </p>
+              </div>
+            </div>
+            <div className="flex p-6 justify-between items-center border border-[#C6C6CD] bg-[#FFF] w-full h-[98px] absolute left-[435px] top-0">
+              <div className="flex items-center gap-6 w-fit">
+                <div className="flex flex-col items-start rounded-xl border border-[#C6C6CD] w-12 h-12 overflow-hidden">
+                  <div className="max-w-[48px] shrink-0 bg-[#C4C4C4] w-[46px] h-[46px] overflow-hidden"></div>
+                </div>
+                <div className="flex flex-col items-start w-fit">
+                  <div className="flex flex-col items-start w-full">
+                    <p className="text-[#000] font-inter text-base font-bold leading-6 w-fit">
+                      Marcus Thorne
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-start w-full">
+                    <p className="text-[#45464D] font-inter text-xs leading-[18px] w-fit tracking-[0.025em]">
+                      PHD RESEARCHER
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <svg
+                width="29"
+                height="24"
+                viewBox="0 0 29 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="flex p-1 flex-col justify-center items-center rounded-xl w-fit "
+              >
+                <path
+                  d="M19 11V9H25V11H19ZM12 12C10.9 12 9.95833 11.6083 9.175 10.825C8.39167 10.0417 8 9.1 8 8C8 6.9 8.39167 5.95833 9.175 5.175C9.95833 4.39167 10.9 4 12 4C13.1 4 14.0417 4.39167 14.825 5.175C15.6083 5.95833 16 6.9 16 8C16 9.1 15.6083 10.0417 14.825 10.825C14.0417 11.6083 13.1 12 12 12ZM4 20V17.2C4 16.6333 4.14583 16.1125 4.4375 15.6375C4.72917 15.1625 5.11667 14.8 5.6 14.55C6.63333 14.0333 7.68333 13.6458 8.75 13.3875C9.81667 13.1292 10.9 13 12 13C13.1 13 14.1833 13.1292 15.25 13.3875C16.3167 13.6458 17.3667 14.0333 18.4 14.55C18.8833 14.8 19.2708 15.1625 19.5625 15.6375C19.8542 16.1125 20 16.6333 20 17.2V20H4ZM6 18H18V17.2C18 17.0167 17.9542 16.85 17.8625 16.7C17.7708 16.55 17.65 16.4333 17.5 16.35C16.6 15.9 15.6917 15.5625 14.775 15.3375C13.8583 15.1125 12.9333 15 12 15C11.0667 15 10.1417 15.1125 9.225 15.3375C8.30833 15.5625 7.4 15.9 6.5 16.35C6.35 16.4333 6.22917 16.55 6.1375 16.7C6.04583 16.85 6 17.0167 6 17.2V18ZM12 10C12.55 10 13.0208 9.80417 13.4125 9.4125C13.8042 9.02083 14 8.55 14 8C14 7.45 13.8042 6.97917 13.4125 6.5875C13.0208 6.19583 12.55 6 12 6C11.45 6 10.9792 6.19583 10.5875 6.5875C10.1958 6.97917 10 7.45 10 8C10 8.55 10.1958 9.02083 10.5875 9.4125C10.9792 9.80417 11.45 10 12 10Z"
+                  fill="#76777D"
+                />
+              </svg>
+            </div>
+            <div className="flex p-6 justify-between items-center border border-[#C6C6CD] bg-[#FFF] w-full h-[98px] absolute left-0 top-[110px]">
+              <div className="flex items-center gap-6 w-fit">
+                <div className="flex flex-col items-start rounded-xl border border-[#C6C6CD] w-12 h-12 overflow-hidden">
+                  <div className="max-w-[48px] shrink-0 bg-[#C4C4C4] w-[46px] h-[46px] overflow-hidden"></div>
+                </div>
+                <div className="flex flex-col items-start w-fit">
+                  <div className="flex flex-col items-start w-full">
+                    <p className="text-[#000] font-inter text-base font-bold leading-6 w-fit">
+                      Sarah Chen
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-start w-full">
+                    <p className="text-[#45464D] font-inter text-xs leading-[18px] w-fit tracking-[0.025em]">
+                      HUMANITIES SENIOR
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <svg
+                width="29"
+                height="24"
+                viewBox="0 0 29 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="flex p-1 flex-col justify-center items-center rounded-xl w-fit "
+              >
+                <path
+                  d="M19 11V9H25V11H19ZM12 12C10.9 12 9.95833 11.6083 9.175 10.825C8.39167 10.0417 8 9.1 8 8C8 6.9 8.39167 5.95833 9.175 5.175C9.95833 4.39167 10.9 4 12 4C13.1 4 14.0417 4.39167 14.825 5.175C15.6083 5.95833 16 6.9 16 8C16 9.1 15.6083 10.0417 14.825 10.825C14.0417 11.6083 13.1 12 12 12ZM4 20V17.2C4 16.6333 4.14583 16.1125 4.4375 15.6375C4.72917 15.1625 5.11667 14.8 5.6 14.55C6.63333 14.0333 7.68333 13.6458 8.75 13.3875C9.81667 13.1292 10.9 13 12 13C13.1 13 14.1833 13.1292 15.25 13.3875C16.3167 13.6458 17.3667 14.0333 18.4 14.55C18.8833 14.8 19.2708 15.1625 19.5625 15.6375C19.8542 16.1125 20 16.6333 20 17.2V20H4ZM6 18H18V17.2C18 17.0167 17.9542 16.85 17.8625 16.7C17.7708 16.55 17.65 16.4333 17.5 16.35C16.6 15.9 15.6917 15.5625 14.775 15.3375C13.8583 15.1125 12.9333 15 12 15C11.0667 15 10.1417 15.1125 9.225 15.3375C8.30833 15.5625 7.4 15.9 6.5 16.35C6.35 16.4333 6.22917 16.55 6.1375 16.7C6.04583 16.85 6 17.0167 6 17.2V18ZM12 10C12.55 10 13.0208 9.80417 13.4125 9.4125C13.8042 9.02083 14 8.55 14 8C14 7.45 13.8042 6.97917 13.4125 6.5875C13.0208 6.19583 12.55 6 12 6C11.45 6 10.9792 6.19583 10.5875 6.5875C10.1958 6.97917 10 7.45 10 8C10 8.55 10.1958 9.02083 10.5875 9.4125C10.9792 9.80417 11.45 10 12 10Z"
+                  fill="#76777D"
+                />
+              </svg>
+            </div>
+            <div className="flex p-6 justify-center items-center border-2 border-dashed border-[#C6C6CD] bg-[rgba(239,244,255,0.50)] w-full h-[98px] absolute left-[435px] top-[110px]">
+              <div className="flex items-center gap-1 w-fit">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="flex flex-col items-start w-fit "
+                >
+                  <path
+                    d="M9 15H11V11H15V9H11V5H9V9H5V11H9V15ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20ZM10 18C12.2333 18 14.125 17.225 15.675 15.675C17.225 14.125 18 12.2333 18 10C18 7.76667 17.225 5.875 15.675 4.325C14.125 2.775 12.2333 2 10 2C7.76667 2 5.875 2.775 4.325 4.325C2.775 5.875 2 7.76667 2 10C2 12.2333 2.775 14.125 4.325 15.675C5.875 17.225 7.76667 18 10 18Z"
+                    fill="#45464D"
+                  />
+                </svg>
+                <p className="text-[#45464D] font-inter text-sm font-medium leading-[14px] w-fit tracking-[0.05em]">
+                  Invite Member
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="inline-flex py-3 px-6 items-center gap-1 rounded-sm border-2 border-[#BA1A1A] absolute left-[660px] top-[621px]">
+        <svg
+          width="16"
+          height="18"
+          viewBox="0 0 16 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="flex flex-col items-center absolute left-[26px] top-3.5 "
+        >
+          <path
+            d="M5.4 13.5L8 10.9L10.6 13.5L12 12.1L9.4 9.5L12 6.9L10.6 5.5L8 8.1L5.4 5.5L4 6.9L6.6 9.5L4 12.1L5.4 13.5ZM3 18C2.45 18 1.97917 17.8042 1.5875 17.4125C1.19583 17.0208 1 16.55 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.8042 17.0208 14.4125 17.4125C14.0208 17.8042 13.55 18 13 18H3ZM13 3H3V16H13V3ZM3 3V16V3Z"
+            fill="#BA1A1A"
+          />
+        </svg>
+        <p className="text-[#BA1A1A] font-inter text-sm font-medium leading-[14px] absolute left-[46px] top-4 text-center tracking-[0.05em]">
+          Dissolve Group
+        </p>
+      </div>
+      <div className="flex p-12 flex-col items-start gap-12 border border-[#000] shadow-[010px15px-3pxrgba(0,0,0,0.10),04px6px-4pxrgba(0,0,0,0.10)] w-[368px] absolute left-[896px] top-0 overflow-hidden">
+        <div className="flex justify-between items-center w-full">
+          <div className="flex items-center gap-3 w-fit">
+            <svg
+              width="24"
+              height="16"
+              viewBox="0 0 24 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex flex-col items-start w-fit "
+            >
+              <path
+                d="M12.5 7.95C12.9833 7.41667 13.3542 6.80833 13.6125 6.125C13.8708 5.44167 14 4.73333 14 4C14 3.26667 13.8708 2.55833 13.6125 1.875C13.3542 1.19167 12.9833 0.583333 12.5 0.05C13.5 0.183333 14.3333 0.625 15 1.375C15.6667 2.125 16 3 16 4C16 5 15.6667 5.875 15 6.625C14.3333 7.375 13.5 7.81667 12.5 7.95ZM18 16V13C18 12.4 17.8667 11.8292 17.6 11.2875C17.3333 10.7458 16.9833 10.2667 16.55 9.85C17.4 10.15 18.1875 10.5375 18.9125 11.0125C19.6375 11.4875 20 12.15 20 13V16H18ZM20 9V7H18V5H20V3H22V5H24V7H22V9H20ZM8 8C6.9 8 5.95833 7.60833 5.175 6.825C4.39167 6.04167 4 5.1 4 4C4 2.9 4.39167 1.95833 5.175 1.175C5.95833 0.391667 6.9 0 8 0C9.1 0 10.0417 0.391667 10.825 1.175C11.6083 1.95833 12 2.9 12 4C12 5.1 11.6083 6.04167 10.825 6.825C10.0417 7.60833 9.1 8 8 8ZM0 16V13.2C0 12.6333 0.145833 12.1125 0.4375 11.6375C0.729167 11.1625 1.11667 10.8 1.6 10.55C2.63333 10.0333 3.68333 9.64583 4.75 9.3875C5.81667 9.12917 6.9 9 8 9C9.1 9 10.1833 9.12917 11.25 9.3875C12.3167 9.64583 13.3667 10.0333 14.4 10.55C14.8833 10.8 15.2708 11.1625 15.5625 11.6375C15.8542 12.1125 16 12.6333 16 13.2V16H0ZM8 6C8.55 6 9.02083 5.80417 9.4125 5.4125C9.80417 5.02083 10 4.55 10 4C10 3.45 9.80417 2.97917 9.4125 2.5875C9.02083 2.19583 8.55 2 8 2C7.45 2 6.97917 2.19583 6.5875 2.5875C6.19583 2.97917 6 3.45 6 4C6 4.55 6.19583 5.02083 6.5875 5.4125C6.97917 5.80417 7.45 6 8 6ZM2 14H14V13.2C14 13.0167 13.9542 12.85 13.8625 12.7C13.7708 12.55 13.65 12.4333 13.5 12.35C12.6 11.9 11.6917 11.5625 10.775 11.3375C9.85833 11.1125 8.93333 11 8 11C7.06667 11 6.14167 11.1125 5.225 11.3375C4.30833 11.5625 3.4 11.9 2.5 12.35C2.35 12.4333 2.22917 12.55 2.1375 12.7C2.04583 12.85 2 13.0167 2 13.2V14Z"
+                fill="black"
+              />
+            </svg>
+            <div className="flex flex-col items-start w-fit">
+              <p className="text-[#000] font-inter text-sm font-bold leading-[14px] w-fit tracking-[0.1em]">
+                PENDING APPLICANTS
+              </p>
+            </div>
+          </div>
+          <div className="flex py-1 px-3 flex-col items-start rounded-xl bg-[#E2AAAB] w-fit">
+            <p className="text-[#000] font-inter text-xs font-bold leading-4 w-fit">
+              2
+            </p>
+          </div>
+        </div>
+        <div className="flex pb-6 flex-col items-start gap-4 border-b border-b-[#E2E8F0] w-full">
+          <div className="flex items-start gap-4 w-full">
+            <div className="max-w-[248.67px] rounded-lg bg-linear-[0deg,#FFF0%,#FFF100%),#E5EEF] shadow-[02px4px0rgba(0,0,0,0.05)inset] w-12 h-12 overflow-hidden"></div>
+            <div className="flex flex-col items-start w-full h-full">
+              <div className="flex flex-col items-start w-full">
+                <p className="text-[#2E0052] font-openSans text-base font-bold leading-5 w-full">
+                  Samuel K.
+                </p>
+              </div>
+              <div className="flex flex-col items-start w-full">
+                <p className="text-[#4C4451] font-openSans text-sm leading-[17.5px] w-full">
+                  Applied 2h ago{" "}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex p-3 flex-col items-start rounded-lg border border-[#F1F5F9] bg-[#FFF] w-full">
+            <p className="text-[#4C4451] font-openSans text-sm leading-5 w-fit">
+              &quot;I'm struggling with Green's Theorem and would love to
+              collaborate on practice problems together.&quot;
+            </p>
+          </div>
+          <div className="inline-grid w-full relative">
+            <button className="cursor-pointer text-nowrap inline-flex pt-2.5 pr-[26px] pb-2.5 pl-[26px] flex-col justify-center items-center rounded-xl bg-[#86F2E4] absolute left-0 top-0 relative">
+              <div className="absolute -right-0 rounded-xl bg-[rgba(255,255,255,0.00)] shadow-[04px6px-1pxrgba(0,0,0,0.10),02px4px-2pxrgba(0,0,0,0.10)] w-[119px] h-10 absolute left-0 top-0"></div>
+              <p className="text-[#000] font-openSans text-base font-bold leading-5 absolute left-[26px] top-2.5 text-center">
+                Approve
+              </p>
+            </button>
+            <button className="cursor-pointer text-nowrap inline-flex pt-2.5 pr-[39px] pb-2.5 pl-[39px] flex-col justify-center items-center rounded-xl border border-[#000] bg-[#F8EFE6] absolute left-[142px] top-0">
+              <p className="text-[#000] font-openSans text-base font-bold leading-5 absolute left-[39px] top-2.5 text-center">
+                Deny
+              </p>
+            </button>
+          </div>
+        </div>
+        <div className="flex pt-6 pr-6 pb-6 pl-px flex-col items-start gap-6 w-[297px] overflow-hidden">
+          <div className="flex flex-col items-start gap-4 w-full">
+            <div className="flex items-start gap-4 w-full">
+              <div className="max-w-[248.67px] rounded-lg bg-linear-[0deg,#FFF0%,#FFF100%),#E5EEF] shadow-[02px4px0rgba(0,0,0,0.05)inset] w-12 h-12 overflow-hidden"></div>
+              <div className="flex flex-col items-start w-full h-full">
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#2E0052] font-openSans text-base font-bold leading-5 w-full">
+                    Lina V.
+                  </p>
+                </div>
+                <div className="flex flex-col items-start w-full">
+                  <p className="text-[#4C4451] font-openSans text-sm leading-[17.5px] w-full">
+                    Applied 5h ago{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex p-3 flex-col items-start rounded-lg border border-[#F1F5F9] bg-[#FFF] w-full">
+              <p className="text-[#4C4451] font-openSans text-sm leading-5 w-fit">
+                &quot;Looking for a group that stays focused. I have notes from
+                Prof. Miller's lecture.&quot;
+              </p>
+            </div>
+            <div className="inline-grid w-full relative">
+              <button className="cursor-pointer text-nowrap inline-flex pt-2.5 pr-[26px] pb-2.5 pl-[26px] flex-col justify-center items-center rounded-xl bg-[#86F2E4] absolute left-0 top-0 relative">
+                <div className="absolute -right-0 rounded-xl bg-[rgba(255,255,255,0.00)] shadow-[04px6px-1pxrgba(0,0,0,0.10),02px4px-2pxrgba(0,0,0,0.10)] w-[119px] h-10 absolute left-0 top-0"></div>
+                <p className="text-[#000] font-openSans text-base font-bold leading-5 absolute left-[26px] top-2.5 text-center">
+                  Approve
+                </p>
+              </button>
+              <button className="cursor-pointer text-nowrap inline-flex pt-2.5 pr-[39px] pb-2.5 pl-[39px] flex-col justify-center items-center rounded-xl border border-[#000] absolute left-[142px] top-0">
+                <p className="text-[#000] font-openSans text-base font-bold leading-5 absolute left-[39px] top-2.5 text-center">
+                  Deny
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

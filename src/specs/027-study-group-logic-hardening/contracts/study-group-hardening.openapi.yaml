@@ -1,0 +1,280 @@
+openapi: 3.1.0
+info:
+  title: Study Group Logic Hardening Delta
+  version: 1.0.0
+  description: |
+    Delta contract for feature 027. Unchanged paths and schemas inherit from
+    specs/026-study-group-feature/contracts/study-groups.openapi.yaml.
+paths:
+  /api/study-groups:
+    get:
+      summary: List one authoritative page of discoverable Study Groups
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Filters and authorization exclusions applied before pagination
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudyGroupPageResponse'
+    post:
+      summary: Create a reservation-backed Study Group as a student
+      responses:
+        '201':
+          description: Existing Study Group detail response
+        '400':
+          description: Invalid metadata, nonexistent calendar date, past date, or non-future slot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+        '403':
+          description: Authenticated account is not a student
+        '409':
+          description: Slot became unavailable
+  /api/study-groups/created:
+    get:
+      summary: List one authoritative page of groups created by the student
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Creator-owned page in authoritative lifecycle and schedule order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudyGroupPageResponse'
+        '403':
+          description: Authenticated account is not a student
+  /api/study-groups/joined:
+    get:
+      summary: List one authoritative page of the student's participation relationships
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Participation page with authoritative metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JoinedStudyGroupPageResponse'
+        '403':
+          description: Authenticated account is not a student
+  /api/study-groups/{groupId}/invitations:
+    post:
+      summary: Create and deliver one Pending invitation
+      parameters:
+        - $ref: '#/components/parameters/GroupId'
+      responses:
+        '201':
+          description: Pending invitation persisted and required email delivered
+        '502':
+          description: Email delivery failed and Pending invitation cleanup succeeded
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ErrorResponse'
+                  - type: object
+                    properties:
+                      error:
+                        type: object
+                        properties:
+                          code: { const: EMAIL_DELIVERY_FAILED }
+        '503':
+          description: Email delivery and Pending invitation cleanup both failed; authoritative state must be refreshed before retry
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ErrorResponse'
+                  - type: object
+                    properties:
+                      error:
+                        type: object
+                        properties:
+                          code: { const: INVITATION_STATE_INCONSISTENT }
+  /api/study-groups/{groupId}/requests:
+    post:
+      summary: Submit one join request as an eligible student
+      parameters:
+        - $ref: '#/components/parameters/GroupId'
+      responses:
+        '201':
+          description: Pending request persisted; lifecycle delivery does not delay or alter this outcome
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipationResponse'
+        '403':
+          description: Non-student, host, or otherwise unauthorized participant
+        '409':
+          description: Duplicate, cooldown, full, or stale group state
+  /api/study-groups/{groupId}/requests/{requestId}:
+    delete:
+      summary: Cancel only the recipient's Pending join request
+      parameters:
+        - $ref: '#/components/parameters/GroupId'
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Pending type=request relationship deleted
+        '409':
+          description: Relationship is stale or is not a join request; no mutation occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/study-groups/{groupId}/requests/{requestId}/approve:
+    post:
+      summary: Creator approves only a Pending join request
+      parameters:
+        - $ref: '#/components/parameters/GroupId'
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Request approved and member count incremented exactly once
+        '409':
+          description: Wrong relationship type, stale state, or no capacity; no mutation occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/study-groups/{groupId}/requests/{requestId}/deny:
+    post:
+      summary: Creator denies only a Pending join request
+      parameters:
+        - $ref: '#/components/parameters/GroupId'
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Request denied exactly once
+        '409':
+          description: Wrong relationship type or stale state; no mutation occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/study-groups/{groupId}/dissolve:
+    post:
+      summary: Permanently dissolve an eligible creator-owned group
+      parameters:
+        - $ref: '#/components/parameters/GroupId'
+      responses:
+        '200':
+          description: Reservation, group, and participation relationships deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DissolveResponse'
+components:
+  parameters:
+    GroupId:
+      name: groupId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    RequestId:
+      name: requestId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        default: 8
+  schemas:
+    PageMeta:
+      type: object
+      required: [page, pageSize, totalItems, totalPages]
+      properties:
+        page: { type: integer, minimum: 1 }
+        pageSize: { type: integer, minimum: 1, maximum: 50 }
+        totalItems: { type: integer, minimum: 0 }
+        totalPages: { type: integer, minimum: 0 }
+    StudyGroupPageResponse:
+      type: object
+      required: [success, data, meta]
+      properties:
+        success:
+          const: true
+        data:
+          type: array
+          items:
+            $ref: '../../026-study-group-feature/contracts/study-groups.openapi.yaml#/components/schemas/StudyGroupSummary'
+        meta:
+          $ref: '#/components/schemas/PageMeta'
+    JoinedStudyGroupPageResponse:
+      type: object
+      required: [success, data, meta]
+      properties:
+        success:
+          const: true
+        data:
+          type: array
+          items:
+            $ref: '../../026-study-group-feature/contracts/study-groups.openapi.yaml#/components/schemas/JoinedStudyGroup'
+        meta:
+          $ref: '#/components/schemas/PageMeta'
+    ParticipationResponse:
+      type: object
+      required: [success, data]
+      properties:
+        success:
+          const: true
+        data:
+          type: object
+          required: [requestId, groupId, userId, type, status]
+          properties:
+            requestId: { type: string, format: uuid }
+            groupId: { type: string, format: uuid }
+            userId: { type: string, format: uuid }
+            type: { const: request }
+            status: { const: pending }
+            content: { type: [string, 'null'], maxLength: 100 }
+    DissolveResponse:
+      type: object
+      required: [success, data]
+      properties:
+        success:
+          const: true
+        data:
+          type: object
+          required: [groupId, deleted]
+          properties:
+            groupId: { type: string, format: uuid }
+            deleted: { const: true }
+    ErrorResponse:
+      type: object
+      required: [success, error]
+      properties:
+        success:
+          const: false
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: { type: string }
+            message: { type: string }
+            details: { type: object, additionalProperties: true }

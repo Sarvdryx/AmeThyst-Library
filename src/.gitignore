@@ -1,0 +1,101 @@
+
+# ==========================
+# Global
+# ==========================
+node_modules/
+dist/
+build/
+*.log
+.env*
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+
+
+# ==========================
+# For client folder
+# ==========================
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/client/node_modules
+/client/.pnp
+/client/.pnp.*
+/client/.yarn/*
+!/client/.yarn/patches
+!/client/.yarn/plugins
+!/client/.yarn/releases
+!/client/.yarn/versions
+
+# testing
+/client/coverage
+
+# next.js
+/client/.next/
+/client/out/
+
+# production
+/client/build
+
+# env files (can opt-in for committing if needed)
+/client/.env*.local
+/client/.env*
+
+# vercel
+/client/.vercel
+
+# typescript
+*.tsbuildinfo
+/client/next-env.d.ts
+
+# ==========================
+# For server folder
+# ==========================
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/server/node_modules
+/server/.pnp
+/server/.pnp.js
+
+# testing
+/server/coverage
+
+# production
+/server/build
+
+# local env files
+/server/.env*.local
+/server/.env
+
+/server/init_db
+
+# ==========================
+# For database folder
+# ==========================
+
+/database/init_db
+/database/.env
+/database/tmp_csv
+/database/*.sql
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+lightgbm_ranker.txt

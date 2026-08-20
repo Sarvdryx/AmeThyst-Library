@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #F8EFE6;
+  --foreground: #091426;
+  --primary: #091426;
+  --secondary: #006F66;
+  --accent: #FFB95F;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #091426;
+  --foreground: #F8EFE6;
+  --primary: #F8EFE6;
+  --secondary: #FFB95F;
+  --accent: #006F66;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy: #091426;
+  --color-teal: #006F66;
+  --color-orange: #FFB95F;
+  --font-inter: var(--font-inter);
+  --font-manrope: var(--font-manrope);
+  --font-open-sans: var(--font-open-sans);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes scale-up {
+  0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-scale-up {
+  animation: scale-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+/* Global Custom Scrollbar for Light and Dark Modes */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb,
+html.dark ::-webkit-scrollbar-thumb,
+body.dark ::-webkit-scrollbar-thumb {
+  background-color: #525252;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover,
+html.dark ::-webkit-scrollbar-thumb:hover,
+body.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #737373;
+}
+
+/* Centralized Custom Scrollbar for Book Form Modals & Cards */
+.modal-custom-scrollbar::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.modal-custom-scrollbar::-webkit-scrollbar-track,
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-custom-scrollbar::-webkit-scrollbar-thumb,
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1;
+  border-radius: 9999px;
+}
+.dark .modal-custom-scrollbar::-webkit-scrollbar-thumb,
+html.dark .modal-custom-scrollbar::-webkit-scrollbar-thumb,
+body.dark .modal-custom-scrollbar::-webkit-scrollbar-thumb,
+.dark .custom-scrollbar::-webkit-scrollbar-thumb,
+html.dark .custom-scrollbar::-webkit-scrollbar-thumb,
+body.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #525252;
+  border-radius: 9999px;
+}
+.modal-custom-scrollbar::-webkit-scrollbar-thumb:hover,
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #94A3B8;
+}
+.dark .modal-custom-scrollbar::-webkit-scrollbar-thumb:hover,
+html.dark .modal-custom-scrollbar::-webkit-scrollbar-thumb:hover,
+body.dark .modal-custom-scrollbar::-webkit-scrollbar-thumb:hover,
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover,
+html.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover,
+body.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #737373;
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+.dark *,
+html.dark *,
+body.dark * {
+  scrollbar-color: #525252 transparent;
+}
+
+/* Hide clear and reveal buttons in password inputs for IE/Edge */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+html {
+  scrollbar-gutter: stable;
+}

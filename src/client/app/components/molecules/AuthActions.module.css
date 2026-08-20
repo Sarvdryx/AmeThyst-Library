@@ -1,0 +1,36 @@
+.notificationScroller {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.notificationScroller::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.notificationScrollTrack {
+  position: absolute;
+  top: 8px;
+  right: 4px;
+  bottom: 8px;
+  width: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.notificationScrollThumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 999px;
+  background-color: rgba(72, 108, 126, 0.58);
+  transition: background-color 150ms ease, transform 60ms linear;
+}
+
+:global(.dark) .notificationScrollThumb {
+  background-color: rgba(159, 192, 205, 0.58);
+}

@@ -1,0 +1,32 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "overrides": {
+    "postcss": "^8.5.25",
+    "sharp": "^0.35.3"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "node scripts/sync-locales.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "sync-locales": "node scripts/sync-locales.mjs"
+  },
+  "dependencies": {
+    "next": "16.2.12",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "socket.io-client": "^4.8.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "25.9.2",
+    "@types/react": "19.2.17",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.12",
+    "tailwindcss": "^4"
+  }
+}

@@ -1,0 +1,46 @@
+export default function RequestToJoinStudyGroup() {
+  return (
+    <div className="rounded-[50px] border border-[#000] bg-[#F8EFE6] min-w-screen min-h-screen overflow-hidden">
+      <div className="flex flex-col items-center w-[672px] absolute left-[72px] top-[43px]"></div>
+      <p className="text-[#000] font-inter text-5xl font-bold leading-[56px] w-[421px] h-14 absolute left-[197px] top-[99px] text-center tracking-[0.0833em]">
+        Request to Join
+      </p>
+      <div className="flex flex-col items-start gap-8 w-[590px] absolute left-[125px] top-[230px]">
+        <div className="flex flex-col items-start gap-2 w-full">
+          <div className="flex justify-between items-start w-full">
+            <div className="flex flex-col items-start h-full"></div>
+            <div className="flex flex-col items-start w-fit h-full">
+              <p className="text-[#7D7483] font-openSans text-[13px] font-bold leading-4 w-fit tracking-[0.05em]">
+                0&#x2F;100
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-start gap-2 w-full">
+          <p className="text-[#000] font-inter text-base font-bold leading-5 w-fit">
+            Additional Text
+          </p>
+          <div className="flex pt-4 pr-4 pb-[88px] pl-4 justify-center items-start rounded-lg border border-[#E2E8F0] bg-[#FFF] w-full overflow-hidden">
+            <div className="flex flex-col items-start w-full">
+              <p className="text-[#6B7280] font-openSans text-base leading-6 w-full">
+                e.g. Hello can I join in, I am very lonely right now TvT
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex pt-6 justify-end items-start gap-4 w-full">
+          <button className="cursor-pointer text-nowrap flex py-3 px-8 flex-col justify-center items-center rounded-lg w-fit">
+            <p className="text-[#000] font-openSans text-base font-bold leading-5 w-fit">
+              Cancel
+            </p>
+          </button>
+          <button className="cursor-pointer text-nowrap flex py-3 px-10 flex-col justify-center items-center rounded-lg bg-[#000] shadow-[01px2px0rgba(0,0,0,0.05)] w-fit">
+            <p className="text-[#FFF] font-openSans text-base font-bold leading-5 w-fit">
+              Send
+            </p>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

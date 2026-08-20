@@ -1,0 +1,7 @@
+python-dotenv   
+neo4j           
+pandas             
+psycopg2-binary 
+lightgbm       
+scikit-learn   
+numpy
