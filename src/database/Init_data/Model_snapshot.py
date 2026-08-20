@@ -11,10 +11,12 @@ ENV_PATH = os.path.join(ROOT_DIR, ".env")
 load_dotenv(ENV_PATH)
 load_dotenv()  # Fallback to local directory
 
-MEMGRAPH_URI = os.getenv("MEMGRAPH_URI", "bolt://localhost:7687")
-MEMGRAPH_USER = os.getenv("MEMGRAPH_USER", "amethyst_admin")
-MEMGRAPH_PASSWORD = os.getenv("MEMGRAPH_PASSWORD", "AmethystMG2026")
-CONTAINER_NAME = "amethyst_memgraph"
+mem_host = os.getenv("MEMGRAPH_HOST") or "localhost"
+mem_port = os.getenv("MEMGRAPH_PORT") or "7687"
+MEMGRAPH_URI = os.getenv("MEMGRAPH_URI") or f"bolt://{mem_host}:{mem_port}"
+MEMGRAPH_USER = os.getenv("MEMGRAPH_USER")
+MEMGRAPH_PASSWORD = os.getenv("MEMGRAPH_PASSWORD")
+CONTAINER_NAME = os.getenv("MEMGRAPH_CONTAINER_NAME")
 
 # Target paths inside the container and host
 SNAPSHOT_FILENAME = "amethyst_graph.snapshot"
@@ -25,7 +27,8 @@ SNAPSHOT_PATH_HOST = os.path.join(SCRIPT_DIR, SNAPSHOT_FILENAME)
 
 def export_snapshot():
     print("Connecting to Memgraph to trigger database snapshot...")
-    driver = GraphDatabase.driver(MEMGRAPH_URI, auth=(MEMGRAPH_USER, MEMGRAPH_PASSWORD))
+    auth = (MEMGRAPH_USER, MEMGRAPH_PASSWORD) if (MEMGRAPH_USER and MEMGRAPH_PASSWORD) else None
+    driver = GraphDatabase.driver(MEMGRAPH_URI, auth=auth)
     try:
         with driver.session() as session:
             # 1. Trigger snapshot creation in Memgraph
@@ -60,7 +63,19 @@ def export_snapshot():
             with open(SNAPSHOT_PATH_HOST, "wb") as f:
                 f.write(stream_result.stdout)
                 
-            print(f"[OK] Snapshot exported cleanly to: {SNAPSHOT_PATH_HOST}")
+            print(f"[OK] Binary snapshot exported cleanly to: {SNAPSHOT_PATH_HOST}")
+
+        # 4. Dump Cypher script natively via Bolt session for cloud deployment
+        cypher_path = os.path.join(SCRIPT_DIR, "datagraph_backup.cypher")
+        print(f"Dumping database Cypher script to: {cypher_path}...")
+        with driver.session() as session:
+            result = session.run("DUMP DATABASE;")
+            statements = [record[0] for record in result if record and record[0]]
+
+        with open(cypher_path, "w", encoding="utf-8") as f:
+            f.write("\n".join(statements))
+        print(f"[OK] Cypher backup exported cleanly ({len(statements)} statements, {os.path.getsize(cypher_path)} bytes).")
+
     except Exception as e:
         print(f"[Error] Export failed: {e}")
         sys.exit(1)

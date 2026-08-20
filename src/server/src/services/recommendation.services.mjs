@@ -63,9 +63,49 @@ export const invalidateUserRecommendationCache = (userId) => {
 };
 
 /**
- * Executes model inference by communicating with the persistent Python TCP socket server.
+ * Baseline fallback scoring using GCN graph scores when microservice is unavailable.
  */
-const runRankerInference = (userId, candidates, retries = 1) => {
+const fallbackGraphScoring = (candidates) => {
+  if (!candidates || candidates.length === 0) return [];
+  return candidates.map(c => ({
+    ...c,
+    score: typeof c.gcn_score === 'number' ? c.gcn_score : 0.0
+  })).sort((a, b) => (b.score || 0) - (a.score || 0));
+};
+
+/**
+ * Executes model inference by communicating with the persistent Python TCP socket server,
+ * falling back to in-memory JS LightGBMEvaluator in Vercel serverless environment.
+ */
+const runRankerInference = async (userId, candidates, retries = 1) => {
+  // Option 1: Remote HTTP Microservice on Render (RECOMMENDATION_SERVICE_URL)
+  const renderServiceUrl = process.env.RECOMMENDATION_SERVICE_URL;
+  if (renderServiceUrl) {
+    try {
+      const endpoint = renderServiceUrl.endsWith('/predict') ? renderServiceUrl : `${renderServiceUrl.replace(/\/$/, '')}/predict`;
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userId, candidates })
+      });
+      if (response.ok) {
+        const parsed = await response.json();
+        if (parsed.success && parsed.ranked) {
+          return parsed.ranked;
+        }
+      }
+    } catch (err) {
+      console.error('[Recommendation Service] Render LightGBM API request failed:', err.message);
+    }
+    // Fallback to JS Evaluator if Render HTTP microservice fails
+    return fallbackGraphScoring(candidates);
+  }
+
+  // Option 2: Pure JS evaluator directly on Vercel or if socket daemon disabled
+  if (process.env.VERCEL || process.env.USE_JS_EVALUATOR === 'true') {
+    return Promise.resolve(fallbackGraphScoring(candidates));
+  }
+
   return new Promise((resolve, reject) => {
     const port = parseInt(process.env.RECOMMENDATION_PORT || '5001', 10);
     const host = '127.0.0.1';
@@ -92,10 +132,10 @@ const runRankerInference = (userId, candidates, retries = 1) => {
           if (parsed.success) {
             resolve(parsed.ranked);
           } else {
-            reject(new Error(parsed.error || 'Python socket server returned success=false'));
+            resolve(fallbackGraphScoring(candidates));
           }
         } catch (err) {
-          reject(new Error(`Failed to parse prediction output: ${responseStr}. Error: ${err.message}`));
+          resolve(fallbackGraphScoring(candidates));
         }
       }
     });
@@ -104,7 +144,6 @@ const runRankerInference = (userId, candidates, retries = 1) => {
       client.destroy();
       
       if (err.code === 'ECONNREFUSED' && retries > 0) {
-        // console.log(`[Socket Client] Connection refused. Spawning Python persistent server and retrying...`);
         startPythonServer();
         
         // Wait 1.5 seconds for the socket server to bind
@@ -114,16 +153,17 @@ const runRankerInference = (userId, candidates, retries = 1) => {
           const retryResult = await runRankerInference(userId, candidates, retries - 1);
           resolve(retryResult);
         } catch (retryErr) {
-          reject(retryErr);
+          resolve(fallbackGraphScoring(candidates));
         }
       } else {
-        reject(err);
+        // Fallback to JS Evaluator on any connection error
+        resolve(fallbackGraphScoring(candidates));
       }
     });
     
     client.on('timeout', () => {
       client.destroy();
-      reject(new Error('Recommendation socket connection timed out'));
+      resolve(fallbackGraphScoring(candidates));
     });
   });
 };

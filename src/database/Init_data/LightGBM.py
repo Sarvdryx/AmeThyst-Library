@@ -1,5 +1,6 @@
 import os
 import random
+import json
 import pandas as pd
 import psycopg2
 import lightgbm as lgb
@@ -135,6 +136,8 @@ def run_local_training():
     model_output_path = os.path.join(os.path.dirname(__file__), "lightgbm_ranker.txt")
     ranker_model.save_model(model_output_path)
     print(f"Success! Initial weights file compiled cleanly to: {model_output_path}")
+
+
 
 if __name__ == "__main__":
     run_local_training()
