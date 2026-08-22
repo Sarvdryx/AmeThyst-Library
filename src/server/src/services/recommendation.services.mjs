@@ -86,7 +86,9 @@ const runRankerInference = async (userId, candidates, retries = 1) => {
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId, candidates })
+        body: JSON.stringify({ user_id: userId, candidates }),
+        // Never hang the renew endpoint on a sleeping/cold-starting Render free-tier service.
+        signal: AbortSignal.timeout(8000)
       });
       if (response.ok) {
         const parsed = await response.json();
@@ -372,6 +374,7 @@ export const generateRecommendations = async (userId) => {
     
     // Strict catalog supplementation: if we have fewer than 15 candidates, supplement with new books from catalog
     if (filteredCandidates.length < RECOMMENDATION_LIMIT) {
+      const selectedCandidateIds = new Set(filteredCandidates.map(c => c.id));
       const supplementRes = await pool.query(
         `SELECT book_id FROM public.books 
          WHERE book_id NOT IN (
@@ -381,10 +384,12 @@ export const generateRecommendations = async (userId) => {
         [userId, RECOMMENDATION_LIMIT - filteredCandidates.length]
       );
       
-      const supplementCandidates = supplementRes.rows.map(row => ({
-        id: row.book_id,
-        gcn_score: 0.05
-      }));
+      const supplementCandidates = supplementRes.rows
+        .filter(row => !selectedCandidateIds.has(row.book_id))
+        .map(row => ({
+          id: row.book_id,
+          gcn_score: 0.05
+        }));
       
       filteredCandidates.push(...supplementCandidates);
     }
@@ -496,9 +501,12 @@ export const generateRecommendations = async (userId) => {
     
     // Save generated recommendations in PostgreSQL
     const showedAt = new Date().toISOString();
-    if (finalSelection.length > 0) {
+    // De-duplicate: PostgreSQL raises "ON CONFLICT DO UPDATE command cannot affect
+    // row a second time" if a single statement touches one (user_id, book_id) twice.
+    const uniqueSelection = Array.from(new Map(finalSelection.map(item => [item.id, item])).values());
+    if (uniqueSelection.length > 0) {
       const params = [];
-      const placeholders = finalSelection.map((item, index) => {
+      const placeholders = uniqueSelection.map((item, index) => {
         const offset = index * 4;
         params.push(userId, String(item.id), Number(item.score), showedAt);
         return `($${offset + 1}, $${offset + 2}, $${offset + 3}, $${offset + 4})`;
@@ -513,7 +521,7 @@ export const generateRecommendations = async (userId) => {
     }
     
     // Fetch details for returned books
-    const selectedIds = finalSelection.map(item => item.id);
+    const selectedIds = uniqueSelection.map(item => item.id);
     const detailsQuery = `
       SELECT book_id, title, author, image_url
       FROM public.books
@@ -522,7 +530,7 @@ export const generateRecommendations = async (userId) => {
     const detailsRes = await pool.query(detailsQuery, [selectedIds]);
     const detailsMap = new Map(detailsRes.rows.map(row => [row.book_id, row]));
     
-    return finalSelection.map(item => {
+    return uniqueSelection.map(item => {
       const details = detailsMap.get(item.id);
       return {
         id: item.id,
