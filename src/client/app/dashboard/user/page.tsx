@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { UpcomingAgenda } from '../../components/organisms';
 import { DashboardCalendar } from '../../components/molecules';
 import { getLoggedInUser } from '../../utils/user';
 import { useI18n } from '../../providers/I18nProvider';
@@ -31,7 +30,6 @@ export default function UserDashboardPage() {
   const { t } = useI18n();
   const user = getLoggedInUser();
   const [allEvents, setAllEvents] = useState<EventItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -109,21 +107,10 @@ export default function UserDashboardPage() {
         setAllEvents([...reservationEvents, ...studyGroupEvents, ...roomReservationEvents]);
       } catch {
         // silently fail; UI shows empty state
-      } finally {
-        setIsLoading(false);
       }
     }
     fetchData();
   }, [t]);
-
-  const today = new Date();
-  const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-  const tomorrowDate = new Date(today);
-  tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-  const tomorrowStr = `${tomorrowDate.getFullYear()}-${String(tomorrowDate.getMonth() + 1).padStart(2, '0')}-${String(tomorrowDate.getDate()).padStart(2, '0')}`;
-
-  const todayEvents = allEvents.filter((e) => e.date === todayStr);
-  const tomorrowEvents = allEvents.filter((e) => e.date === tomorrowStr);
 
   const calendarEvents = allEvents.map((e) => ({
     date: e.date,
@@ -142,11 +129,6 @@ export default function UserDashboardPage() {
         <div className="flex-1 min-w-0">
           <DashboardCalendar events={calendarEvents} />
         </div>
-        <UpcomingAgenda
-          today={todayEvents}
-          tomorrow={tomorrowEvents}
-          isLoading={isLoading}
-        />
       </div>
     </>
   );

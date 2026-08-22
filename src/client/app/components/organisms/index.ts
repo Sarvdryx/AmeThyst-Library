@@ -14,7 +14,6 @@ export { default as BookDetailHero } from './BookDetailHero';
 export { default as LibrarianAnnouncementsPanel } from './LibrarianAnnouncementsPanel';
 export { default as RecommendationCarousel } from './RecommendationCarousel';
 export { default as DashboardSidebar } from './DashboardSidebar';
-export { default as UpcomingAgenda } from './UpcomingAgenda';
 export { default as FeesBreakdownPanel } from './FeesBreakdownPanel';
 export { default as PinModal } from './PinModal';
 export { default as LibrarianDashboardSidebar } from './LibrarianDashboardSidebar';
