@@ -118,4 +118,63 @@ describe('Verify Email API', () => {
     });
   });
 
+  describe('Invalid and consumed tokens', { tags: ['@A_R3', '@A_R7', '@A_R10'] }, () => {
+    it('[TC-INT-VE-003] should return 400 for a non-existent verification token', async () => {
+      pool.query.mockResolvedValueOnce({ rows: [] });
+
+      const res = await request(app)
+        .post('/auth/verify-email')
+        .send({ token: 'non-existent-token' });
+
+      expect(res.status).toBe(400);
+      expect(res.body).toEqual({ error: 'Invalid or expired verification link.' });
+      expect(createAuthSession).not.toHaveBeenCalled();
+    });
+
+    it('[TC-INT-VE-004] should reject reuse of a token after successful verification', async () => {
+      let pending = {
+        token: mockToken,
+        email: 'verify@example.com',
+        password_hash: 'hashed_password',
+        username: 'verify_user',
+        expired_at: new Date(Date.now() + 60_000).toISOString(),
+      };
+      const mockUserRow = {
+        user_id: 42,
+        email: pending.email,
+        username: pending.username,
+        avatar: null,
+        role: 'user',
+      };
+
+      pool.query.mockImplementation(async (sql, values) => {
+        if (sql.includes('SELECT * FROM pending_users WHERE token')) {
+          return { rows: pending?.token === values[0] ? [{ ...pending }] : [] };
+        }
+        if (sql.includes('SELECT * FROM users WHERE email')) return { rows: [] };
+        return { rows: [] };
+      });
+      mockClient.query.mockImplementation(async (sql, values) => {
+        if (typeof sql === 'string' && sql.includes('INSERT INTO users')) {
+          return { rows: [mockUserRow] };
+        }
+        if (typeof sql === 'string' && sql.includes('DELETE FROM pending_users WHERE token')) {
+          if (pending?.token === values[0]) pending = null;
+        }
+        return { rows: [] };
+      });
+
+      const first = await request(app)
+        .post('/auth/verify-email')
+        .send({ token: mockToken });
+      const second = await request(app)
+        .post('/auth/verify-email')
+        .send({ token: mockToken });
+
+      expect(first.status).toBe(200);
+      expect(second.status).toBe(400);
+      expect(second.body).toEqual({ error: 'Invalid or expired verification link.' });
+      expect(createAuthSession).toHaveBeenCalledTimes(1);
+    });
+  });
 });

@@ -22,8 +22,10 @@ export default function HomeLayout({
       {navbar}
       <div className="flex flex-col">
         {hero}
-        {searchBar}
-        {popularPublishes}
+        <div id="library-catalog" tabIndex={-1} className="scroll-mt-20">
+          {searchBar}
+          {popularPublishes}
+        </div>
       </div>
       {filterPanel}
       {footer}

@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { setCurrentUser, type StoredUser } from '../utils/user';
 import { safeFetch, getCsrfToken, resetCsrfToken } from '../utils/apiClient';
+import { authSessionCoordinator } from '../utils/authSessionCoordinator.mjs';
 import { AccountSuspendedModal } from '../components/modals';
 
 interface AuthState { user: StoredUser | null; loading: boolean; refresh: () => Promise<void> }
@@ -27,7 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     clearSession();
     setAccountSuspended(true);
   }, [clearSession]);
-  const refresh = useCallback(async () => {
+  const refresh = useCallback(() => authSessionCoordinator.run(async () => {
     try {
       let response = await safeFetch(`${apiUrl}/auth/me`, { credentials: 'include' });
       if (!response) { clearSession(); return; }
@@ -83,7 +84,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const next = body?.data || null;
       setUser(next); setCurrentUser(next);
     } catch { clearSession(); }
-  }, [clearSession, markSuspended]);
+  }), [clearSession, markSuspended]);
   useEffect(() => {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('user');

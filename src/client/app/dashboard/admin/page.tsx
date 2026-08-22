@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useI18n } from '../../providers/I18nProvider';
 import { apiFetch, authHeaders } from '../../utils/apiClient';
 import { getLoggedInUser } from '../../utils/user';
@@ -56,7 +56,7 @@ export default function AdminDashboardPage() {
   }, [search]);
 
   // Fetch count stats and list
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -83,11 +83,14 @@ export default function AdminDashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [debouncedSearch, page, selectedRole, selectedStatus, t]);
 
   useEffect(() => {
-    fetchData();
-  }, [debouncedSearch, selectedRole, selectedStatus, page]);
+    const requestTimer = window.setTimeout(() => {
+      void fetchData();
+    }, 0);
+    return () => window.clearTimeout(requestTimer);
+  }, [fetchData]);
 
   // CSV Export Trigger
   const handleExportCSV = async () => {
@@ -96,7 +99,8 @@ export default function AdminDashboardPage() {
       const url = `${API_URL}/api/admin/users/export?search=${encodeURIComponent(debouncedSearch)}&role=${selectedRole}&status=${selectedStatus}`;
       
       const response = await fetch(url, {
-        headers: await authHeaders()
+        headers: await authHeaders(),
+        credentials: 'include',
       });
 
       if (!response.ok) {

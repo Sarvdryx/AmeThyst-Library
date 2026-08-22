@@ -30,7 +30,7 @@ describe('Resend Verification Controller', () => {
   });
 
   describe('Successful and validation mapping', { tags: ['@A_R4', '@A_R10'] }, () => {
-    it('[TC-CTL-RV-001] should pass through the generic 200 body and reject a missing email with 400', async () => {
+    it('[TC-CTL-RV-001] should pass through the generic 200 body', async () => {
       resendVerificationEmailService.mockResolvedValue({ message: RESEND_GENERIC });
 
       await resendVerification(req, res);
@@ -38,8 +38,9 @@ describe('Resend Verification Controller', () => {
       expect(resendVerificationEmailService).toHaveBeenCalledWith({ email: 'resend@example.com' });
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith({ message: RESEND_GENERIC });
+    });
 
-      vi.clearAllMocks();
+    it('[TC-CTL-RV-003] should reject a missing email with 400', async () => {
       req.body.email = undefined;
       await resendVerification(req, res);
 
@@ -50,7 +51,7 @@ describe('Resend Verification Controller', () => {
   });
 
   describe('Infrastructure catch mapping', { tags: ['@A_R8', '@A_R10'] }, () => {
-    it('[TC-CTL-RV-002] should return 200 with the generic message when the service throws', async () => {
+    it('[TC-CTL-RV-002] should return 200 with the generic message for an unexpected service failure', async () => {
       resendVerificationEmailService.mockRejectedValue(new Error('PostgreSQL database query failure'));
 
       await resendVerification(req, res);

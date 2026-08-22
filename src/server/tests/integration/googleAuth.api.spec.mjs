@@ -4,20 +4,24 @@ import express from 'express';
 import { createAuthSession } from '../../src/services/auth-session.services.mjs';
 import authRoutes from '../../src/routes/auth.routes.mjs';
 
+const passportState = vi.hoisted(() => ({
+  callbackUser: {
+    user_id: 101,
+    email: 'google-api@example.com',
+    username: 'google_api_user',
+    avatar: 'https://avatar.com/pic.jpg',
+    role: 'user',
+  },
+  callbackInfo: undefined,
+}));
+
 vi.mock('../../src/config/passport.mjs', () => {
   return {
     default: {
       authenticate: vi.fn((strategy, options, callback) => {
         return async (req, res, next) => {
           if (callback) {
-            const user = {
-              user_id: 101,
-              email: 'google-api@example.com',
-              username: 'google_api_user',
-              avatar: 'https://avatar.com/pic.jpg',
-              role: 'user',
-            };
-            return callback(null, user, undefined);
+            return callback(null, passportState.callbackUser, passportState.callbackInfo);
           }
           if (options && options.failureRedirect) {
             if (req.query.fail === 'true') {
@@ -54,6 +58,14 @@ app.use('/auth', authRoutes);
 describe('Google Auth API', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    passportState.callbackUser = {
+      user_id: 101,
+      email: 'google-api@example.com',
+      username: 'google_api_user',
+      avatar: 'https://avatar.com/pic.jpg',
+      role: 'user',
+    };
+    passportState.callbackInfo = undefined;
     createAuthSession.mockResolvedValue({
       accessToken: 'access',
       refreshToken: 'refresh',
@@ -89,4 +101,16 @@ describe('Google Auth API', () => {
     });
   });
 
+  describe('Authentication failure callback', { tags: ['@A_R2', '@A_R10'] }, () => {
+    it('[TC-INT-GA-003] should redirect a refused Google authentication to login without creating a session', async () => {
+      passportState.callbackUser = null;
+      passportState.callbackInfo = { message: 'account_exists_with_password' };
+
+      const res = await request(app).get('/auth/google/callback');
+
+      expect(res.status).toBe(302);
+      expect(res.headers.location).toBe(`${process.env.CLIENT_URL}/login`);
+      expect(createAuthSession).not.toHaveBeenCalled();
+    });
+  });
 });

@@ -1,3 +1,5 @@
+import { authSessionCoordinator } from './authSessionCoordinator.mjs';
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
 export function getToken(): null { return null; }
@@ -75,7 +77,7 @@ const parseResponse = async (response: Response): Promise<any> => {
   return text ? { message: text } : null;
 };
 
-const refreshSession = async () => {
+const refreshSession = () => authSessionCoordinator.run(async () => {
   const csrf = await getCsrfToken();
   let response = await safeFetch(`${API_URL}/auth/refresh`, {
     method: 'POST',
@@ -101,7 +103,7 @@ const refreshSession = async () => {
   if (typeof window !== 'undefined' && user) window.dispatchEvent(new CustomEvent('user-updated', { detail: user }));
   resetCsrfToken();
   return true;
-};
+});
 
 export async function apiFetch<T = unknown>(path: string, options: RequestInit = {}, retried = false): Promise<ApiResult<T>> {
   const headers = new Headers(options.headers || {});

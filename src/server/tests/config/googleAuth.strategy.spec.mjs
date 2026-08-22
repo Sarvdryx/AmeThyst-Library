@@ -22,7 +22,7 @@ describe('Google Auth Strategy', () => {
   });
 
   describe('First-time provisioning', { tags: ['@A_R5', '@A_R7'] }, () => {
-    it('[TC-CFG-GA-001] should provision a Google user with mapped data and a null avatar fallback', async () => {
+    it('[TC-CFG-GA-001] should provision a Google user with the profile avatar', async () => {
       const mockCreatedUser = {
         user_id: 88,
         email: 'oauth@example.com',
@@ -44,16 +44,19 @@ describe('Google Auth Strategy', () => {
         ['oauth@example.com', 'Google User', 'https://avatar-url.com/pic.jpg', 'GOOGLE_AUTH', 'user']
       );
       expect(mockDone).toHaveBeenCalledWith(null, mockCreatedUser);
+    });
 
-      vi.clearAllMocks();
+    it('[TC-CFG-GA-003] should provision a Google user with a null avatar when no photo exists', async () => {
       const profileNoPhoto = {
         emails: [{ value: 'oauth@example.com' }],
         displayName: 'Google User',
       };
       const mockCreatedWithoutPhoto = {
-        ...mockCreatedUser,
         user_id: 89,
+        email: 'oauth@example.com',
+        username: 'Google User',
         avatar: null,
+        role: 'user',
       };
       pool.query.mockResolvedValueOnce({ rows: [] });
       pool.query.mockResolvedValueOnce({ rows: [mockCreatedWithoutPhoto] });
@@ -70,7 +73,7 @@ describe('Google Auth Strategy', () => {
   });
 
   describe('Returning user and password-account collision', { tags: ['@A_R2', '@A_R6'] }, () => {
-    it('[TC-CFG-GA-002] should return an existing Google user and refuse a password-account collision', async () => {
+    it('[TC-CFG-GA-002] should return an existing Google user without inserting a duplicate', async () => {
       const mockExistingUser = {
         user_id: 88,
         email: 'oauth@example.com',
@@ -85,8 +88,9 @@ describe('Google Auth Strategy', () => {
 
       expect(pool.query).toHaveBeenCalledTimes(1);
       expect(mockDone).toHaveBeenCalledWith(null, mockExistingUser);
+    });
 
-      vi.clearAllMocks();
+    it('[TC-CFG-GA-004] should refuse a password-account collision', async () => {
       const mockPasswordUser = {
         user_id: 99,
         email: 'oauth@example.com',
@@ -104,4 +108,17 @@ describe('Google Auth Strategy', () => {
     });
   });
 
+  describe('Profile validation', { tags: ['@A_R7'] }, () => {
+    it('[TC-CFG-GA-005] should reject a profile without a verified email', async () => {
+      const profileWithoutVerifiedEmail = {
+        emails: [{ value: 'unverified@example.com', verified: false }],
+        displayName: 'Unverified User',
+      };
+
+      await googleVerifyCallback('access', 'refresh', profileWithoutVerifiedEmail, mockDone);
+
+      expect(pool.query).not.toHaveBeenCalled();
+      expect(mockDone).toHaveBeenCalledWith(null, false, { message: 'verified_email_required' });
+    });
+  });
 });

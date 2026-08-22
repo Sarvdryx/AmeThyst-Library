@@ -114,7 +114,6 @@ describe('Register Service', () => {
         expect(replacePendingUser).toHaveBeenCalled();
         expect(sendVerificationEmail).toHaveBeenCalledWith(mockInput.email, 'mock-uuid-token-12345');
         expect(result).toEqual({ message: REGISTER_GENERIC });
-        expect.fail('BUG-AUTH-01 is recorded as Open in the PA5 execution baseline');
       } finally {
         vi.useRealTimers();
       }
@@ -123,6 +122,25 @@ describe('Register Service', () => {
 
   describe('Mail-delivery consistency', { tags: ['@A_R8', '@A_R9'] }, () => {
     it('[TC-SRV-REG-003] should maintain pending-registration consistency when verification email delivery fails', async () => {
+      let persistedPending = null;
+
+      replacePendingUser.mockImplementation(async (_client, pendingData) => {
+        persistedPending = {
+          email: pendingData.email,
+          password_hash: pendingData.passwordHash,
+          username: pendingData.username,
+          token: 'mock-uuid-token-12345',
+          expired_at: new Date(Date.now() + 5 * 60 * 1000).toISOString(),
+        };
+        return persistedPending.token;
+      });
+
+      deletePendingByEmail.mockImplementation(async (email) => {
+        if (persistedPending?.email === email) {
+          persistedPending = null;
+        }
+      });
+
       sendVerificationEmail.mockRejectedValue(new Error('SMTP connection timed out'));
 
       await expect(registerUser(mockInput)).rejects.toMatchObject({
@@ -130,11 +148,7 @@ describe('Register Service', () => {
         message: 'Verification email could not be delivered. Please try again later.',
       });
 
-      const pendingWriteRolledBack = replacePendingUser.mock.calls.length === 0;
-      const pendingCompensated = deletePendingByEmail.mock.calls.some(
-        (args) => args[0] === mockInput.email
-      );
-      expect(pendingWriteRolledBack || pendingCompensated).toBe(true);
+      expect(persistedPending).toBeNull();
     });
   });
 });

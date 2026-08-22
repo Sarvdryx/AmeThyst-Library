@@ -84,15 +84,15 @@ describe('Verify Email Controller', () => {
   });
 
   describe('Token and lifecycle mapping', { tags: ['@A_R3', '@A_R10'] }, () => {
-    it('[TC-CTL-VE-002] should return 400 when the token is missing and 410 when the link has expired', async () => {
+    it('[TC-CTL-VE-002] should return 400 when the token is missing', async () => {
       req.body.token = undefined;
       await verifyEmailHandler(req, res);
       expect(verifyEmail).not.toHaveBeenCalled();
       expect(res.status).toHaveBeenCalledWith(400);
       expect(res.json).toHaveBeenCalledWith({ error: 'Verification token is required' });
+    });
 
-      vi.clearAllMocks();
-      req.body.token = 'test-token-uuid-123';
+    it('[TC-CTL-VE-003] should return 410 when the verification link has expired', async () => {
       verifyEmail.mockRejectedValue(new Error('Verification link has expired. Please register again.'));
 
       await verifyEmailHandler(req, res);

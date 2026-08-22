@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, Suspense, useRef } from 'react';
+import React, { useEffect, useRef, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import RegisterTemplate from '../components/templates/RegisterTemplate';
 import Link from 'next/link';
@@ -8,7 +8,10 @@ import { useI18n } from '../providers/I18nProvider';
 import { Button } from '../components/atoms';
 import { mapServerError } from '../utils/errors';
 import { getRedirectPathForUser, setCurrentUser, type StoredUser } from '../utils/user';
-import { apiFetch } from '../utils/apiClient';
+import { apiFetch, type ApiResult } from '../utils/apiClient';
+import { authSessionCoordinator } from '../utils/authSessionCoordinator.mjs';
+
+type VerificationResult = ApiResult<{ user: StoredUser }>;
 
 function VerifyEmailContent() {
   const { t } = useI18n();
@@ -16,53 +19,81 @@ function VerifyEmailContent() {
   const router = useRouter();
   const token = searchParams.get('token');
 
-  const [state, setState] = useState({
+  const [state, setState] = useState(() => token ? {
     status: 'loading', // 'loading' | 'success' | 'expired' | 'error'
     error: '',
+  } : {
+    status: 'error',
+    error: t('auth.verification_failed'),
   });
 
-  const hasVerified = useRef(false);
+  const verificationRequestRef = useRef<{
+    token: string;
+    promise: Promise<VerificationResult>;
+  } | null>(null);
 
   useEffect(() => {
-    if (!token) {
-      setState({
-        status: 'error',
-        error: t('auth.verification_failed'),
+    let subscribed = true;
+    let redirectTimer: number | null = null;
+
+    if (!token) return;
+
+    if (!verificationRequestRef.current || verificationRequestRef.current.token !== token) {
+      verificationRequestRef.current = {
+        token,
+        promise: authSessionCoordinator.run(async () => {
+          const verification = await apiFetch<{ user: StoredUser }>('/auth/verify-email', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ token }),
+          });
+          if (verification.success && verification.data?.user) {
+            setCurrentUser(verification.data.user);
+          }
+          return verification;
+        }),
+      };
+
+      queueMicrotask(() => {
+        if (subscribed) setState({ status: 'loading', error: '' });
       });
-      return;
     }
 
-    if (hasVerified.current) return;
-    hasVerified.current = true;
-
-    const verify = async () => {
-      try {
-        const result = await apiFetch<{ user: StoredUser }>('/auth/verify-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ token }),
-        });
+    verificationRequestRef.current.promise.then(
+      (result) => {
+        if (!subscribed) return;
         if (!result.success && result.message?.toLowerCase().includes('expired')) {
           setState({ status: 'expired', error: '' });
           return;
         }
-        if (!result.success || !result.data?.user) throw new Error(result.message || t('auth.verification_failed'));
+        if (!result.success || !result.data?.user) {
+          const message = result.message || t('auth.verification_failed');
+          setState({
+            status: 'error',
+            error: mapServerError(message, t, 'auth.verification_failed'),
+          });
+          return;
+        }
         const user = result.data.user;
-        setCurrentUser(user);
         setState({ status: 'success', error: '' });
-        setTimeout(() => router.push(getRedirectPathForUser(user)), 2000);
-      } catch (err: unknown) {
+        redirectTimer = window.setTimeout(() => router.push(getRedirectPathForUser(user)), 2000);
+      },
+      (err: unknown) => {
+        if (!subscribed) return;
         const msg = err instanceof Error ? err.message : String(err);
         setState({
           status: 'error',
           error: mapServerError(msg, t, 'auth.verification_failed'),
         });
-      }
-    };
+      },
+    );
 
-    verify();
+    return () => {
+      subscribed = false;
+      if (redirectTimer !== null) window.clearTimeout(redirectTimer);
+    };
   }, [token, router, t]);
 
   return (

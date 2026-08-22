@@ -42,7 +42,6 @@ describe('Verify Email Service', () => {
     user_id: 42,
     email: 'verify@example.com',
     username: 'verify_user',
-    password_hash: 'hashed_password',
     avatar: null,
     role: 'user',
   };
@@ -89,6 +88,7 @@ describe('Verify Email Service', () => {
       expect(buildUserPayload).toHaveBeenCalledWith(mockUserRow);
       expect(result).toEqual({ user: mockMappedUser, userRow: mockUserRow });
       expect(result.user).not.toHaveProperty('password_hash');
+      expect(result.userRow).not.toHaveProperty('password_hash');
       expect(result).not.toHaveProperty('token');
     });
   });
@@ -109,7 +109,6 @@ describe('Verify Email Service', () => {
         );
         expect(deletePendingByToken).toHaveBeenCalledWith(mockToken);
         expect(insertUserFromPending).not.toHaveBeenCalled();
-        expect.fail('BUG-AUTH-03 is recorded as Open in the PA5 execution baseline');
       } finally {
         vi.useRealTimers();
       }

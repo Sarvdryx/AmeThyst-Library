@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getCsrfToken, resetCsrfToken } from './apiClient';
+import { authSessionCoordinator } from './authSessionCoordinator.mjs';
 
 export interface StoredUser {
   userId?: string; username?: string; email?: string; phone_number?: string; avatar?: string;
@@ -26,10 +27,12 @@ export const getAuthToken = (): null => null;
 
 export async function logoutUser(): Promise<void> {
   if (typeof window === 'undefined') return;
-  const csrf = await getCsrfToken();
-  await fetch(`${apiUrl}/auth/logout`, { method: 'POST', credentials: 'include', headers: csrf ? { 'X-CSRF-Token': csrf } : {} }).catch(() => undefined);
-  resetCsrfToken();
-  setCurrentUser(null);
+  await authSessionCoordinator.run(async () => {
+    const csrf = await getCsrfToken();
+    await fetch(`${apiUrl}/auth/logout`, { method: 'POST', credentials: 'include', headers: csrf ? { 'X-CSRF-Token': csrf } : {} }).catch(() => undefined);
+    resetCsrfToken();
+    setCurrentUser(null);
+  });
 }
 
 export function updateStoredUser(partial: Partial<StoredUser>): StoredUser | null {
