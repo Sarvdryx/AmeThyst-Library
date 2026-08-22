@@ -1,0 +1,153 @@
+name: Retrain & Deploy AI Recommendation System
+
+on:
+  schedule:
+    - cron: '0 2 * * 0' # Every Sunday at 02:00 UTC
+
+  workflow_dispatch:
+    inputs:
+      run_graphsage:
+        description: 'Execute weighted GraphSAGE retraining'
+        required: false
+        type: boolean
+        default: true
+      run_lightgbm:
+        description: 'Execute LightGBM ranker retraining'
+        required: false
+        type: boolean
+        default: true
+      deploy_cloud:
+        description: 'Deploy retrained graph to Memgraph Cloud'
+        required: false
+        type: boolean
+        default: true
+      deploy_render:
+        description: 'Trigger deployment on Render service'
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  retrain-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    # Ephemeral Memgraph container for fast local training on GitHub runners
+    services:
+      memgraph:
+        image: memgraph/memgraph-mage:latest
+        ports:
+          - 7687:7687
+        env:
+          MEMGRAPH_USER: ${{ secrets.MEMGRAPH_USER }}
+          MEMGRAPH_PASSWORD: ${{ secrets.MEMGRAPH_PASSWORD }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r src/database/Init_data/requirements.txt
+
+      - name: Wait for Local Memgraph Container
+        run: |
+          python -c "
+          import socket, time
+          print('Waiting for local Memgraph service...')
+          for _ in range(30):
+              try:
+                  with socket.create_connection(('127.0.0.1', 7687), timeout=2):
+                      print('Memgraph is ready!')
+                      break
+              except OSError:
+                  time.sleep(2)
+          else:
+              raise TimeoutError('Memgraph service timed out.')
+          "
+
+      - name: Sync PostgreSQL & Train GraphSAGE
+        if: ${{ github.event_name == 'schedule' || inputs.run_graphsage == true }}
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          MEMGRAPH_URI: bolt://127.0.0.1:7687
+          MEMGRAPH_USER: ${{ secrets.MEMGRAPH_USER }}
+          MEMGRAPH_PASSWORD: ${{ secrets.MEMGRAPH_PASSWORD }}
+        run: |
+          echo "Syncing PostgreSQL metadata to local Memgraph..."
+          python src/database/Init_data/Init_graph.py
+          echo "Executing GraphSAGE representation training & exporting embeddings.npz..."
+          python src/database/Init_data/GraphSAGE.py
+
+      - name: Retrain LightGBM Ranker
+        if: ${{ github.event_name == 'schedule' || inputs.run_lightgbm == true }}
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: |
+          echo "Training LightGBM model on latest graph embeddings..."
+          python src/database/Init_data/LightGBM.py
+
+      - name: Upload Serving Model Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: recommendation-models
+          path: |
+            src/database/Init_data/lightgbm_ranker.txt
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Commit & Push Retrained Model Artifacts
+        if: ${{ github.event_name == 'schedule' || inputs.run_lightgbm == true }}
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(ai): auto-update retrained LightGBM model weights [skip ci]"
+          file_pattern: "src/database/Init_data/lightgbm_ranker.txt"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy Embeddings to Memgraph Cloud
+        if: ${{ github.event_name == 'schedule' || inputs.deploy_cloud == true }}
+        env:
+          PYTHONUNBUFFERED: "1"
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          MEMGRAPH_URI: bolt://127.0.0.1:7687
+          MEMGRAPH_USER: ${{ secrets.MEMGRAPH_USER }}
+          MEMGRAPH_PASSWORD: ${{ secrets.MEMGRAPH_PASSWORD }}
+          MEMGRAPH_URI_SERVER: ${{ secrets.MEMGRAPH_URI_SERVER }}
+          MEMGRAPH_USER_SERVER: ${{ secrets.MEMGRAPH_USER_SERVER }}
+          MEMGRAPH_PASSWORD_SERVER: ${{ secrets.MEMGRAPH_PASSWORD }}
+        run: |
+          if [ -n "$MEMGRAPH_URI_SERVER" ]; then
+            echo "Fast-syncing embeddings to Memgraph Cloud..."
+            python src/database/Init_data/Deploy_cloud.py
+          else
+            echo "MEMGRAPH_URI_SERVER not configured. Skipping cloud sync."
+          fi
+
+      - name: Trigger Render Service Deployment
+        if: ${{ github.event_name == 'schedule' || inputs.deploy_render == true }}
+        env:
+          RENDER_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          echo "Triggering deployment on Render service..."
+          curl -X POST "$RENDER_HOOK"

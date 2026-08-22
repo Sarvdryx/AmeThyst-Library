@@ -89,6 +89,9 @@ yarn-error.log*
 # ==========================
 
 /database/init_db
+/database/Init_data/amethyst_graph.snapshot
+/database/Init_data/datagraph_backup.cypher
+
 /database/.env
 /database/tmp_csv
 /database/*.sql
@@ -98,4 +101,6 @@ __pycache__/
 *.pyc
 .venv/
 venv/
-lightgbm_ranker.txt
+!database/Init_data/lightgbm_ranker.json
+!src/database/Init_data/lightgbm_ranker.json
+!src/database/Init_data/lightgbm_ranker.txt

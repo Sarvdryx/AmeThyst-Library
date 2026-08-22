@@ -1,0 +1,85 @@
+name: Automated PostgreSQL Daily Backup
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Triggers automatically every 24 hours at 00:00 UTC
+  workflow_dispatch:
+    inputs:
+      retention_days:
+        description: 'Artifact retention period in days'
+        required: false
+        type: string
+        default: '30'
+
+jobs:
+  postgres-backup:
+    name: PostgreSQL Database Dump & Backup
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install PostgreSQL 17 Client
+        run: |
+          sudo install -d /etc/apt/keyrings
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/keyrings/postgresql.gpg
+          echo "deb [signed-by=/etc/apt/keyrings/postgresql.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-17
+
+      - name: Create PostgreSQL Database Backup
+        env:
+          PGHOST: ${{ secrets.DB_HOST }}
+          PGPORT: ${{ secrets.DB_PORT || '5432' }}
+          PGUSER: ${{ secrets.DB_USER }}
+          PGPASSWORD: ${{ secrets.DB_PASSWORD }}
+          PGDATABASE: ${{ secrets.DB_NAME }}
+          PGSSLMODE: ${{ secrets.PGSSLMODE || 'require' }}
+        run: |
+          set -eo pipefail
+
+          # 1. Validate Secret Variables
+          if [ -z "$PGHOST" ] || [ -z "$PGUSER" ] || [ -z "$PGPASSWORD" ] || [ -z "$PGDATABASE" ]; then
+            echo "❌ Error: One or more required database secrets are missing!"
+            echo "Please ensure DB_HOST, DB_USER, DB_PASSWORD, and DB_NAME are set in Repository Secrets."
+            exit 1
+          fi
+
+          mkdir -p backups
+          TIMESTAMP=$(date +'%Y%m%d_%H%M%S')
+          BACKUP_FILENAME="backups/postgres_backup_${PGDATABASE}_${TIMESTAMP}.sql.gz"
+          
+          echo "Starting pg_dump v17 for database '${PGDATABASE}' at ${PGHOST}:${PGPORT} (SSLMode: ${PGSSLMODE})..."
+
+          # 2. Execute pg_dump v17 with pipefail protection
+          if ! pg_dump -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$PGDATABASE" \
+            --clean --if-exists --no-owner --no-privileges \
+            | gzip > "$BACKUP_FILENAME"; then
+            
+            echo "⚠️ pg_dump with SSLMode=require failed. Retrying with SSLMode=prefer..."
+            export PGSSLMODE=prefer
+            pg_dump -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -d "$PGDATABASE" \
+              --clean --if-exists --no-owner --no-privileges \
+              | gzip > "$BACKUP_FILENAME"
+          fi
+            
+          # 3. Verify Backup File Quality & Size
+          FILE_BYTES=$(stat -c%s "$BACKUP_FILENAME" 2>/dev/null || stat -f%z "$BACKUP_FILENAME" 2>/dev/null || echo "0")
+          BACKUP_SIZE=$(du -h "$BACKUP_FILENAME" | cut -f1)
+
+          if [ "$FILE_BYTES" -lt 100 ]; then
+            echo "❌ Error: Backup file is empty or corrupted (size: ${FILE_BYTES} bytes)."
+            exit 1
+          fi
+
+          echo "✅ Backup completed successfully!"
+          echo "File: ${BACKUP_FILENAME} (${BACKUP_SIZE})"
+
+      - name: Upload Backup Artifact to GitHub Actions
+        uses: actions/upload-artifact@v4
+        with:
+          name: postgres-daily-backup
+          path: backups/
+          if-no-files-found: error
+          retention-days: ${{ github.event.inputs.retention_days || 30 }}

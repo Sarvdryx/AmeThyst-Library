@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: amethyst-lightgbm-ranker
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app:app --host 0.0.0.0 --port $PORT"
+    rootDir: src/server/src/recommendation
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0

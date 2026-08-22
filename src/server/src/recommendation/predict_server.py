@@ -12,7 +12,10 @@ ROOT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "../../.."))
 load_dotenv(os.path.join(ROOT_DIR, "database/.env"))
 load_dotenv(os.path.join(ROOT_DIR, "server/.env"))
 
-MODEL_PATH = os.path.join(ROOT_DIR, "database/Init_data/lightgbm_ranker.txt")
+MODEL_PATH = os.path.join(ROOT_DIR, "src/database/Init_data/lightgbm_ranker.txt")
+if not os.path.exists(MODEL_PATH):
+    MODEL_PATH = os.path.join(ROOT_DIR, "database/Init_data/lightgbm_ranker.txt")
+
 PORT = int(os.getenv("RECOMMENDATION_PORT", 5001))
 HOST = "127.0.0.1"
 
@@ -64,14 +67,16 @@ def handle_prediction(data_str, model_manager):
         
         if bst is not None:
             # Create feature matrix matching model expectations
-            # Must contain features: session_month, past_impressions_count, is_in_wishlist, global_available_copies
             df_features = pd.DataFrame(candidates)
+            for col in ['session_month', 'past_impressions_count', 'is_in_wishlist', 'global_available_copies']:
+                if col not in df_features.columns:
+                    df_features[col] = 0.0
+
             X = df_features[['session_month', 'past_impressions_count', 'is_in_wishlist', 'global_available_copies']]
             
             # Predict probabilities using LightGBM model
             preds = bst.predict(X)
             
-            # Combine scores
             ranked_list = []
             for idx, pred in enumerate(preds):
                 ranked_list.append({
