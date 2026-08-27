@@ -20,10 +20,15 @@ export default function LoginPage() {
     if (params.get('suspended') === '1') {
       setAccountSuspended(true);
       params.delete('suspended');
-      const newSearch = params.toString();
-      history.replaceState(null, '', newSearch ? `?${newSearch}` : window.location.pathname);
     }
-  }, []);
+    const authConflict = params.get('auth_conflict');
+    if (authConflict === 'password') {
+      setState(prev => ({ ...prev, error: t('auth.use_google_login') }));
+      params.delete('auth_conflict');
+    }
+    const newSearch = params.toString();
+    history.replaceState(null, '', newSearch ? `?${newSearch}` : window.location.pathname);
+  }, [t]);
 
   const [state, setState] = useState({
     isLoading: false,

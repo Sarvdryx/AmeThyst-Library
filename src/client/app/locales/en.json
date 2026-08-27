@@ -191,7 +191,8 @@
     "resend_verification_success": "Verification email has been resent!",
     "resend_verification_cooldown": "Resend email in {seconds}s",
     "account_suspended": "Your account has been suspended.",
-    "account_suspended_close": "Close"
+    "account_suspended_close": "Close",
+    "use_google_login": "This account was registered with Google. Please sign in with Google."
   },
   "profile": {
     "welcome": "Welcome to your profile,",

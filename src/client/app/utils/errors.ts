@@ -9,6 +9,7 @@ const SERVER_ERROR_MAP: Record<string, string> = {
   'Invalid email or password': 'auth.invalid_email_password',
   'User not found': 'auth.user_not_found',
   'Google accounts cannot change password here': 'auth.google_linked_change_password_error',
+  'This account was registered with Google. Please sign in with Google.': 'auth.use_google_login',
   'Invalid password': 'auth.invalid_credentials',
   'Password is incorrect': 'auth.invalid_credentials',
   'Current password is incorrect': 'auth.invalid_credentials',

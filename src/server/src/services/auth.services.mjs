@@ -135,6 +135,12 @@ export const loginUser = async ({ email, password }) => {
     }
   }
 
+  if (user?.password_hash === 'GOOGLE_AUTH') {
+    const error = new Error('This account was registered with Google. Please sign in with Google.');
+    error.code = 'GOOGLE_ACCOUNT_ONLY';
+    throw error;
+  }
+
   const isMatch = await bcrypt.compare(password, user?.password_hash || fallbackHash);
   const locked = user?.locked_until && new Date(user.locked_until) > new Date();
   const isSuspended = user?.status === 'suspended';

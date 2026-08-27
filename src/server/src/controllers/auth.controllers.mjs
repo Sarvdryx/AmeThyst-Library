@@ -157,7 +157,12 @@ export const googleCallback = [
       if (err) return next(err);
       if (!user) {
         const isSuspended = info?.message === 'USER_SUSPENDED';
-        return res.redirect(`${process.env.CLIENT_URL}/login${isSuspended ? '?suspended=1' : ''}`);
+        const isPasswordConflict = info?.message === 'account_exists_with_password';
+        const params = new URLSearchParams();
+        if (isSuspended) params.set('suspended', '1');
+        if (isPasswordConflict) params.set('auth_conflict', 'password');
+        const qs = params.toString();
+        return res.redirect(`${process.env.CLIENT_URL}/login${qs ? `?${qs}` : ''}`);
       }
       try {
         const session = await createAuthSession(user, req);
